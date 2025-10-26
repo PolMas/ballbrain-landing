@@ -126,8 +126,10 @@ function animateCounter(el){
   function step(ts){
     if (!start) start = ts;
     const p = Math.min(1, (ts - start) / dur);
-    const val = Math.round(from + (to - from) * p);
-    el.textContent = `${val}${suffix}`;
+    const val = from + (to - from) * p;
+    // Format to 2 decimal places if the number is a decimal
+    const formattedVal = val % 1 !== 0 ? val.toFixed(2) : Math.round(val).toString();
+    el.textContent = `${formattedVal}${suffix}`;
     if (p < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
@@ -340,14 +342,123 @@ if (pilotVideo) {
   });
 })();
 
+// Animated Waitlist Counter with Dynamic Updates
+function animateWaitlistCounter(el, target) {
+  const currentText = el.textContent;
+  const current = parseInt(currentText) || 0;
+  const duration = 2000; // 2 seconds
+  let start = null;
+  
+  function step(ts) {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    
+    // Easing function for smooth animation
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    
+    const animatedValue = Math.floor(current + (target - current) * easeOut);
+    el.textContent = animatedValue;
+    
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+  
+  requestAnimationFrame(step);
+}
+
+// Function to calculate waitlist count based on time
+function getCurrentWaitlistCount() {
+  const STORAGE_KEY = 'ballbrain_waitlist';
+  const UPDATE_INTERVAL = 60 * 60 * 1000; // 1 hour in milliseconds
+  const INCREMENT_PER_HOUR = 2;
+  const BASE_COUNT = 247;
+  
+  // Get stored data or initialize
+  let storedData = localStorage.getItem(STORAGE_KEY);
+  let lastUpdateTime, currentCount;
+  
+  if (storedData) {
+    const data = JSON.parse(storedData);
+    lastUpdateTime = data.timestamp;
+    currentCount = data.count;
+  } else {
+    // Initialize with base count
+    lastUpdateTime = Date.now();
+    currentCount = BASE_COUNT;
+  }
+  
+  // Calculate elapsed time in hours
+  const now = Date.now();
+  const elapsedHours = Math.floor((now - lastUpdateTime) / UPDATE_INTERVAL);
+  
+  // Calculate new count
+  const newCount = currentCount + (elapsedHours * INCREMENT_PER_HOUR);
+  
+  // Update storage if count changed
+  if (elapsedHours > 0) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      timestamp: now,
+      count: newCount
+    }));
+  }
+  
+  return newCount;
+}
+
+// Observe waitlist counter when it enters viewport
+const waitlistCounter = document.querySelector('.waitlist-number');
+if (waitlistCounter) {
+  const waitlistObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Calculate current count based on time
+        const currentCount = getCurrentWaitlistCount();
+        
+        // Update the data-target attribute
+        waitlistCounter.dataset.target = currentCount;
+        
+        // Animate to the new count
+        animateWaitlistCounter(waitlistCounter, currentCount);
+        
+        waitlistObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  waitlistObserver.observe(waitlistCounter);
+}
+
+// Countdown Timer to January 1, 2026
+function updateCountdown() {
+  const targetDate = new Date('2026-01-01T00:00:00').getTime();
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance < 0) {
+    // Launch date has passed
+    document.getElementById('days').textContent = '00';
+    document.getElementById('hours').textContent = '00';
+    document.getElementById('minutes').textContent = '00';
+    document.getElementById('seconds').textContent = '00';
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById('days').textContent = String(days).padStart(2, '0');
+  document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+}
+
+// Update countdown immediately and then every second
+if (document.getElementById('countdown')) {
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
+
 // Contact form -> mailto
-document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const fd = new FormData(e.currentTarget);
-  const name = String(fd.get('name')||'');
-  const email = String(fd.get('email')||'');
-  const message = String(fd.get('message')||'');
-  const subject = encodeURIComponent(`BallBrain contact from ${name||'Unknown'}`);
-  const body = encodeURIComponent(`From: ${name} (${email})\n\n${message}`);
-  window.location.href = `mailto:hello@ballbrain.app?subject=${subject}&body=${body}`;
-});

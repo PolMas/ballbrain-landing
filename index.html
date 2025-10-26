@@ -134,20 +134,36 @@
           </div>
         </div>
 
+        <!-- Countdown Timer -->
+        <div class="countdown-container">
+          <p class="countdown-label">Launch Date: January 1, 2026</p>
+          <div class="countdown" id="countdown">
+            <div class="countdown-item">
+              <div class="countdown-value" id="days">00</div>
+              <div class="countdown-label-small">Days</div>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+              <div class="countdown-value" id="hours">00</div>
+              <div class="countdown-label-small">Hours</div>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+              <div class="countdown-value" id="minutes">00</div>
+              <div class="countdown-label-small">Minutes</div>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+              <div class="countdown-value" id="seconds">00</div>
+              <div class="countdown-label-small">Seconds</div>
+            </div>
+          </div>
+          <p class="countdown-note">Priority access for waitlist members</p>
+        </div>
+
         <div class="row gap-20 wrap">
           <a class="btn solid" href="#download">Join Waitlist</a>
           <a class="btn outline" href="#features">See Features <span class="icon"><svg><use href="#icon-chevron"/></svg></span></a>
-        </div>
-
-        <div class="row gap-16 center">
-          <div class="stars">
-            <span class="icon"><svg><use href="#icon-star"/></svg></span>
-            <span class="icon"><svg><use href="#icon-star"/></svg></span>
-            <span class="icon"><svg><use href="#icon-star"/></svg></span>
-            <span class="icon"><svg><use href="#icon-star"/></svg></span>
-            <span class="icon"><svg><use href="#icon-star"/></svg></span>
-          </div>
-          <span class="muted">4.9/5 from 500+ athletes</span>
         </div>
       </div>
     </div>
@@ -228,19 +244,26 @@
           <!-- Stat tiles -->
           <div class="grid-3 gap-16">
             <div class="card center">
-              <p class="tiny muted">Vertical Jump</p>
-              <p class="count" data-from="54" data-to="59" data-suffix=" cm">59 cm</p>
-              <p class="tiny muted">+5 avg</p>
+              <p class="tiny muted">Average Broad Jump Increase</p>
+              <p class="stat-main">
+                <span class="count" data-from="0" data-to="19" data-suffix=" cm">19 cm</span>
+                <span class="stat-conversion">(+7.5 in)</span>
+              </p>
+              <p class="stat-secondary">Week 6 average: <span class="count" data-from="0" data-to="280" data-suffix=" cm">280 cm</span> <span class="stat-conversion">(9'2")</span></p>
             </div>
             <div class="card center">
-              <p class="tiny muted">Agility T-Test</p>
-              <p class="count" data-from="12.6" data-to="11.2" data-suffix=" s">11.2 s</p>
-              <p class="tiny muted">-0.6 avg</p>
+              <p class="tiny muted">Average Pro-Agility Improvement</p>
+              <p class="stat-main">
+                <span class="count" data-from="0" data-to="0.1" data-suffix=" s">-0.1 s</span>
+              </p>
+              <p class="stat-secondary">Week 6 average: <span class="count" data-from="0" data-to="4.86" data-suffix=" s">4.86 s</span></p>
             </div>
             <div class="card center">
-              <p class="tiny muted">Broad Jump</p>
-              <p class="count" data-from="215" data-to="228" data-suffix=" cm">228 cm</p>
-              <p class="tiny muted">+13</p>
+              <p class="tiny muted">Average Jump Endurance Increase</p>
+              <p class="stat-main">
+                <span class="count" data-from="0" data-to="7.5" data-suffix=" reps">+7.5 reps</span>
+              </p>
+              <p class="stat-secondary">Week 6 average: <span class="count" data-from="0" data-to="28" data-suffix=" reps">28 reps</span></p>
             </div>
           </div>
 
@@ -420,25 +443,17 @@
         </div>
       </div>
 
-      <!-- Community stats -->
-      <div class="community-stats">
-        <div class="stat-item">
-          <div class="stat-number">500+</div>
-          <div class="stat-label">Active Athletes</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">50+</div>
-          <div class="stat-label">Team Challenges</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">1000+</div>
-          <div class="stat-label">Progress Posts</div>
+      <!-- Waitlist Counter -->
+      <div class="waitlist-counter">
+        <div class="waitlist-stat">
+          <div class="waitlist-number" data-target="247">0</div>
+          <div class="waitlist-label">People Joined the Waitlist</div>
         </div>
       </div>
 
       <!-- Community CTA -->
       <div class="community-cta">
-        <a class="btn solid community-btn" href="#contact">Join the Community</a>
+        <a class="btn solid community-btn" href="#download">Join the Community</a>
       </div>
     </div>
   </section>
@@ -523,26 +538,76 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section">
+  <section id="contact" class="section contact-section">
     <div class="container">
       <div class="section-head">
-        <h2>Contact</h2>
-        <p class="muted small">Questions, partnerships, or press? Send us a note or DM.</p>
+        <h2>Get in Touch</h2>
+        <p class="muted small">Follow us on Instagram for daily updates, tips, and behind-the-scenes content.</p>
       </div>
       
-      <div class="grid-2 gap-32 stack-sm">
-        <form id="contactForm" class="card stack-16">
-          <input class="input" name="name" required placeholder="Your name" />
-          <input class="input" type="email" name="email" required placeholder="Your email" />
-          <textarea class="input" name="message" rows="5" required placeholder="Your message"></textarea>
-          <button class="btn solid" type="submit">Send message</button>
-          <p class="tiny muted">We'll open your email client to send the message to <u>hello@ballbrain.app</u>.</p>
-        </form>
-        <div class="card stack-16">
-          <h3 class="small">Follow & DM</h3>
-          <p class="tiny muted">We answer quickly on Instagram.</p>
-          <a class="btn outline" href="https://instagram.com/ballbrain.app" target="_blank" rel="noopener"> @ballbrain.app </a>
-          <p class="tiny muted">Email: hello@ballbrain.app</p>
+      <div class="instagram-contact-container">
+        <!-- Instagram Posts Grid -->
+        <div class="instagram-posts-grid">
+          <div class="instagram-post">
+            <a href="https://www.instagram.com/reel/DHbCkhUNpAm/?igsh=cmIzdmtqZ2FuYjF1" target="_blank" rel="noopener" class="post-link">
+              <img src="media/ig-post-1.jpg" alt="Instagram Post 1" />
+              <div class="post-overlay">
+                <span class="post-overlay-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="instagram-post">
+            <a href="https://www.instagram.com/reel/DI7BuKAuAIM/?igsh=N3FrNWN0ZXN0MHcw" target="_blank" rel="noopener" class="post-link">
+              <img src="media/ig-post-2.jpg" alt="Instagram Post 2" />
+              <div class="post-overlay">
+                <span class="post-overlay-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="instagram-post">
+            <a href="https://www.instagram.com/reel/DH-snd6N7CA/?igsh=MWZxNDdxbGYwMnppcQ==" target="_blank" rel="noopener" class="post-link">
+              <img src="media/ig-post-3.jpg" alt="Instagram Post 3" />
+              <div class="post-overlay">
+                <span class="post-overlay-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Instagram Profile -->
+        <div class="instagram-profile">
+          <div class="instagram-icon">
+            <img src="media/favicon.png" alt="BallBrain Logo" />
+          </div>
+          <div class="instagram-info">
+            <h3>@ballbrain.app</h3>
+            <p class="muted">Follow us for training tips, nutrition advice, and exclusive updates</p>
+            <a class="btn solid instagram-btn" href="https://instagram.com/ballbrain.app" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+              Follow on Instagram
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -592,30 +657,27 @@
   </section>
 
   <footer class="footer">
-    <div class="container grid-4 gap-24">
-      <div class="stack-8">
-        <div class="row center gap-8"><span class="icon pink"><svg><use href="#icon-crown"/></svg></span><span class="brand-name">BallBrain</span></div>
-        <p class="tiny">Train smarter. Eat better. Hoop more.</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="media/logo.png" alt="BallBrain Logo" class="footer-logo">
+          <p class="tiny">Train smarter. Eat better. Hoop more.</p>
+        </div>
+        <nav class="footer-nav">
+          <a href="#pilot">Pilot</a>
+          <a href="#features">Features</a>
+          <a href="#gamification">Gamification</a>
+          <a href="#social">Community</a>
+          <a href="#how">How it works</a>
+          <a href="#download">Join Waitlist</a>
+          <a href="#faqs">FAQs</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-      <div class="stack-8">
-        <p class="small">Company</p>
-        <a href="#" class="tiny link">About</a>
-        <a href="#" class="tiny link">Careers</a>
-        <a href="#" class="tiny link">Press</a>
-      </div>
-      <div class="stack-8">
-        <p class="small">Support</p>
-        <a href="#contact" class="tiny link">Help Center</a>
-        <a href="#contact" class="tiny link">Contact</a>
-      </div>
-      <div class="stack-8">
-        <p class="small">Legal</p>
-        <a href="#" class="tiny link">Privacy Policy</a>
-        <a href="#" class="tiny link">Terms of Service</a>
-        <p class="tiny muted">Created by Rork</p>
+      <div class="footer-copyright">
+        <p class="tiny muted">© <span id="yy"></span> BallBrain. All rights reserved.</p>
       </div>
     </div>
-    <div class="container tiny muted pad-y-32">© <span id="yy"></span> BallBrain. All rights reserved.</div>
   </footer>
 
   <script src="script.js"></script>

@@ -170,6 +170,20 @@ h2{font-size:clamp(20px,3vw,36px)}
 .bar{height:8px;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden;margin-top:8px}
 .bar span{display:block;height:100%;background:var(--pink);border-radius:6px}
 
+/* Pilot Stats Styling */
+.pilot-content .card.center{text-align:center}
+.pilot-content .stat-main{font-size:1.5rem;font-weight:700;color:var(--pink);margin:8px 0;line-height:1.3}
+.pilot-content .stat-secondary{font-size:0.85rem;color:var(--muted);margin-top:4px;line-height:1.4}
+.pilot-content .stat-conversion{font-size:0.85rem;color:var(--muted);font-weight:400}
+@media(min-width:480px){
+  .pilot-content .stat-main{font-size:1.8rem}
+  .pilot-content .stat-secondary{font-size:0.9rem}
+}
+@media(min-width:768px){
+  .pilot-content .stat-main{font-size:2rem}
+  .pilot-content .stat-secondary{font-size:0.95rem}
+}
+
 .phone{display:flex;justify-content:center}
 .phone .card{padding:16px; border-radius:18px}
 @media(min-width:480px){.phone .card{padding:20px}}
@@ -190,10 +204,11 @@ h2{font-size:clamp(20px,3vw,36px)}
 .feature-content p{margin:0;color:var(--muted);font-size:0.9rem;line-height:1.4}
 .feature-content .coming-soon-badge{margin-top:8px;display:inline-block}
 
-.community-stats{display:flex;justify-content:center;gap:48px;margin:48px 0;padding:32px 0;border-top:1px solid var(--brd);border-bottom:1px solid var(--brd)}
-.stat-item{text-align:center}
-.stat-number{font-size:2.5rem;font-weight:800;color:var(--pink);margin:0 0 8px;line-height:1}
-.stat-label{font-size:0.9rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+/* Waitlist Counter */
+.waitlist-counter{display:flex;justify-content:center;align-items:center;margin:48px 0;padding:48px 0;border-top:1px solid var(--brd);border-bottom:1px solid var(--brd)}
+.waitlist-stat{text-align:center}
+.waitlist-number{font-size:4rem;font-weight:800;color:var(--pink);margin:0 0 16px;line-height:1;transition:all 0.3s ease}
+.waitlist-label{font-size:1.2rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
 
 .community-cta{margin-top:48px;text-align:center}
 .community-btn{padding:18px 36px;font-size:1.1rem;font-weight:700;background:var(--pink);color:#000;border:none;border-radius:12px;transition:all 0.3s ease;box-shadow:0 8px 20px rgba(255,64,129,0.3)}
@@ -217,6 +232,7 @@ h2{font-size:clamp(20px,3vw,36px)}
 .waiting-list-form{display:flex;flex-direction:column;gap:16px}
 .waiting-list-form .input{height:52px;padding:14px 18px;border:1px solid var(--brd);border-radius:12px;background:rgba(0,0,0,.4);color:#fff;font-size:1rem;font-family:inherit;transition:all 0.3s ease}
 .waiting-list-form .input:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,64,129,0.1)}
+.waiting-list-form button{text-align:center;justify-content:center}
 .waiting-list-form .g-recaptcha{display:flex;justify-content:center;margin:8px 0}
 .waiting-list-form .g-recaptcha > div{transform:scale(0.9);transform-origin:top left}
 @media(max-width:767px){
@@ -239,8 +255,9 @@ h2{font-size:clamp(20px,3vw,36px)}
 @media(max-width:767px){
   .community-features-vertical{gap:16px;margin:32px 0}
   .community-feature-card{padding:20px;gap:16px}
-  .community-stats{gap:32px;padding:24px 0}
-  .stat-number{font-size:2rem}
+  .waitlist-counter{padding:32px 0;margin:32px 0}
+  .waitlist-number{font-size:3rem}
+  .waitlist-label{font-size:1rem}
   .community-cta{margin-top:32px}
 }
 
@@ -406,10 +423,19 @@ textarea.input{height:auto}
 @media(min-width:480px){.footer{padding:60px 0}}
 @media(min-width:768px){.footer{padding:80px 0}}
 
-.grid-4{display:grid;grid-template-columns:1fr;gap:24px}
-@media(min-width:480px){.grid-4{gap:28px}}
-@media(min-width:768px){.grid-4{grid-template-columns:repeat(2,1fr);gap:32px}}
-@media(min-width:1024px){.grid-4{grid-template-columns:repeat(4,1fr);gap:40px}}
+.footer-content{display:flex;flex-direction:column;gap:32px;align-items:center;text-align:center}
+@media(min-width:768px){.footer-content{flex-direction:row;justify-content:space-between;align-items:center;text-align:left}}
+
+.footer-brand{display:flex;flex-direction:column;align-items:center;gap:12px}
+@media(min-width:768px){.footer-brand{align-items:flex-start}}
+.footer-logo{width:120px;height:120px;object-fit:contain;border-radius:0}
+
+.footer-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:24px}
+@media(min-width:768px){.footer-nav{justify-content:flex-start}}
+.footer-nav a{font-size:0.9rem;color:var(--text);text-decoration:none;transition:color 0.3s ease;padding:8px 0}
+.footer-nav a:hover{color:var(--pink)}
+
+.footer-copyright{text-align:center;margin-top:32px;padding-top:32px;border-top:1px solid var(--brd)}
 
 /* Contact section improvements */
 #contact .container{max-width:1000px;padding:0 24px}
@@ -435,6 +461,39 @@ textarea.input{height:auto;min-height:120px;resize:vertical}
 #contact .btn.outline{border:2px solid var(--pink);background:transparent;color:var(--pink);font-weight:700}
 #contact .btn.outline:hover{background:var(--pink);color:#000;transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,64,129,0.3)}
 
+/* Instagram Contact Section */
+.instagram-contact-container{max-width:700px;margin:48px auto 0}
+
+.instagram-profile{background:linear-gradient(135deg,var(--pink),var(--pinkDeep));border-radius:24px;padding:40px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 15px 35px rgba(255,64,129,0.3);position:relative;overflow:hidden}
+
+.instagram-posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px}
+@media(max-width:767px){.instagram-posts-grid{grid-template-columns:repeat(2,1fr);gap:8px}}
+
+.instagram-post{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:var(--card);border:1px solid var(--brd);transition:all 0.3s ease}
+.instagram-post:hover{transform:translateY(-4px);border-color:var(--pink);box-shadow:0 10px 25px rgba(255,64,129,0.2)}
+.post-link{display:block;width:100%;height:100%;position:relative;text-decoration:none}
+.post-link img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+.post-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,64,129,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;border-radius:12px}
+.instagram-post:hover .post-overlay{opacity:1}
+.post-overlay-icon{width:40px;height:40px;background:var(--pink);border-radius:8px;display:flex;align-items:center;justify-content:center;transform:scale(0.8);transition:transform 0.3s ease}
+.post-overlay-icon svg{width:24px;height:24px;stroke:#000}
+.instagram-post:hover .post-overlay-icon{transform:scale(1)}
+.instagram-profile::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);transform:translateX(-100%);animation:shine 3s ease-in-out infinite}
+.instagram-icon{width:70px;height:70px;background:rgba(0,0,0,0.2);border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.instagram-icon img{width:50px;height:50px;object-fit:contain}
+.instagram-info h3{font-size:1.8rem;font-weight:800;margin:0 0 12px;color:#000}
+.instagram-info p{margin:0 0 24px;color:rgba(0,0,0,0.8);font-size:1rem}
+.instagram-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,0.2);color:#000;padding:14px 28px;border-radius:12px;font-weight:700;transition:all 0.3s ease;border:none;box-shadow:0 4px 15px rgba(0,0,0,0.2)}
+.instagram-btn svg{width:20px;height:20px}
+.instagram-btn:hover{background:rgba(0,0,0,0.3);transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,0.3)}
+
+@media(max-width:767px){
+  .instagram-profile{padding:32px}
+  .instagram-info h3{font-size:1.5rem}
+  .instagram-icon{width:60px;height:60px;margin:0 auto 20px}
+  .instagram-icon img{width:40px;height:40px}
+}
+
 /* Hero enhancements */
 .hero-subtitle{font-size:clamp(16px,2.5vw,20px);line-height:1.6;color:var(--muted);max-width:600px;margin:0 auto;text-align:center}
 @media(min-width:768px){.hero-subtitle{font-size:clamp(18px,2.5vw,20px)}}
@@ -443,6 +502,25 @@ textarea.input{height:auto;min-height:120px;resize:vertical}
 @media(min-width:480px){.hero-features{flex-direction:row;gap:20px}}
 .feature-item{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--text)}
 .feature-item .icon{flex-shrink:0}
+
+/* Countdown Timer */
+.countdown-container{margin:24px 0;text-align:center}
+
+/* Center align button group in hero */
+.hero .row.gap-20.wrap{justify-content:center}
+.countdown-label{font-size:0.9rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.countdown{display:flex;justify-content:center;align-items:center;gap:12px;margin:16px 0}
+@media(min-width:480px){.countdown{gap:16px}}
+.countdown-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.countdown-value{font-size:2rem;font-weight:800;color:var(--pink);line-height:1;min-width:48px;text-align:center}
+@media(min-width:480px){.countdown-value{font-size:2.5rem;min-width:56px}}
+@media(min-width:768px){.countdown-value{font-size:3rem;min-width:64px}}
+.countdown-label-small{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+@media(min-width:480px){.countdown-label-small{font-size:0.75rem}}
+.countdown-separator{font-size:1.5rem;font-weight:700;color:var(--pink);padding-bottom:16px}
+@media(min-width:480px){.countdown-separator{font-size:2rem;padding-bottom:20px}}
+@media(min-width:768px){.countdown-separator{font-size:2.5rem;padding-bottom:24px}}
+.countdown-note{font-size:0.85rem;color:var(--muted);margin-top:8px;font-style:italic}
 @media(min-width:480px){.feature-item{font-size:1rem}}
 
 /* Prevent horizontal overflow */
