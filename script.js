@@ -195,10 +195,10 @@ if (pilotVideo) {
         // Clear any existing timeout
         if (autoplayTimeout) clearTimeout(autoplayTimeout);
         
-        // Delay autoplay by 2 seconds
+        // Delay autoplay by 1 second
         autoplayTimeout = setTimeout(() => {
           pilotVideo.play().catch(e => console.log('Video autoplay failed:', e));
-        }, 2000);
+        }, 1000);
       } else {
         // Clear timeout if video goes out of view
         if (autoplayTimeout) {
