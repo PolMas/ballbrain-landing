@@ -1,16 +1,14 @@
 # Waiting List Form Setup
 
-## reCAPTCHA Setup (SPAM PROTECTION)
+## ✅ reCAPTCHA Keys Configured
 
-**IMPORTANT**: To prevent spam submissions, you need to set up reCAPTCHA:
+**Site Key**: `6Lf4m_crAAAAACti9ItVr4owvM_BcHo3J27A98Qp` (Already in index.html line 492)  
+**Secret Key**: `6Lf4m_crAAAAAC0vly63087s8GsaszzXFJ4Zqy89` (Keep this for server-side verification if needed)
 
-1. **Get reCAPTCHA Keys**: Go to [Google reCAPTCHA](https://www.google.com/recaptcha/admin/create)
-2. **Create a new site**:
-   - Label: "BallBrain Waitlist"
-   - reCAPTCHA type: v2 Checkbox ("I'm not a robot")
-   - Domains: Add your domain (e.g., `ballbrain.app`, `localhost` for testing)
-3. **Copy your Site Key**: You'll receive a site key like `6LdXXXXX_XXXXX-XXXXXX`
-4. **Replace in HTML**: In `index.html` line 492, replace `YOUR_RECAPTCHA_SITE_KEY` with your actual site key
+**⚠️ Important**: Make sure your reCAPTCHA is configured to allow these domains in Google reCAPTCHA Admin:
+- Your Netlify URL (e.g., `ballbrain-landing.netlify.app`)
+- Your custom domain (if you have one, e.g., `ballbrain.app`)
+- `localhost` (for local testing)
 
 The form is already configured with Formspree endpoint!
 
