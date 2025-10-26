@@ -102,6 +102,11 @@ h2{font-size:clamp(20px,3vw,36px)}
 .hero-bg{position:absolute;inset:0;opacity:.4;z-index:-1}
 .hero-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.7) 100%);z-index:1}
 .cover{width:100%;height:100%;object-fit:cover}
+.cover::-webkit-media-controls{display:none !important}
+.cover::-webkit-media-controls-enclosure{display:none !important}
+.cover::-webkit-media-controls-panel{display:none !important}
+.cover::-webkit-media-controls-play-button{display:none !important}
+.cover::-webkit-media-controls-start-playback-button{display:none !important}
 
 .orb{position:absolute;aspect-ratio:1/1;width:40vw;border-radius:50%;filter:blur(60px);opacity:.4;pointer-events:none;animation:orbFloat 8s ease-in-out infinite}
 .orb-a{left:-10vw;top:10vh;background:radial-gradient(circle at 30% 30%, var(--pink), var(--pinkDeep) 40%, transparent 60%);animation-delay:0s}
