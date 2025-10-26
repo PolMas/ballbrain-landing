@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BallBrain — Train smarter. Eat better. Hoop more.</title>
+  <meta name="description" content="AI-powered basketball training and nutrition. 30-min sessions, local foods, streaks, and real results." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="video" href="https://ballbrain.app/media/court-reel.mp4" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+  <!-- SVG sprite (tiny icon set) -->
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+    <symbol id="icon-crown" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M3 7l5 4 4-6 4 6 5-4v12H3V7zM5 19h14v-7.2l-3.2 2.6L12 9l-3.8 5.4L5 11.8V19z"/>
+    </symbol>
+    <symbol id="icon-zap" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/>
+    </symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 17.3l6.18 3.7-1.64-7.03L21.9 9.2l-7.19-.62L12 2 9.29 8.58 2.1 9.2l5.36 4.77L5.82 21z"/>
+    </symbol>
+    <symbol id="icon-dumbbell" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M1 14h3v-4H1v4zm19-4v4h3v-4h-3zM6 16h2v-8H6v8zm10 0h2v-8h-2v8zM9 13h6v-2H9v2z"/>
+    </symbol>
+    <symbol id="icon-salad" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M4 10a8 8 0 1016 0H4zm8-6a3 3 0 013 3H9a3 3 0 013-3z"/>
+    </symbol>
+    <symbol id="icon-activity" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M3 12h4l2-6 4 12 2-6h6"/>
+    </symbol>
+    <symbol id="icon-brain" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M8 3a3 3 0 00-3 3v1a3 3 0 000 6v1a3 3 0 106 0V6a3 3 0 00-3-3zm8 0a3 3 0 00-3 3v8a3 3 0 106 0v-1a3 3 0 000-6V6a3 3 0 00-3-3z"/>
+    </symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 22a2 2 0 002-2H10a2 2 0 002 2zm6-6V11a6 6 0 10-12 0v5l-2 2v1h16v-1l-2-2z"/>
+    </symbol>
+    <symbol id="icon-bars" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M4 10h4v10H4V10zm6-6h4v16h-4V4zm6 8h4v8h-4v-8z"/>
+    </symbol>
+    <symbol id="icon-quote" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M7 7h5v5H9v5H4v-5h3V7zm10 0h5v5h-3v5h-5v-5h3V7z"/>
+    </symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M8 5v14l11-7z"/>
+    </symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M9 6l6 6-6 6"/>
+    </symbol>
+  </svg>
+
+  <header class="nav">
+    <div class="container row between center">
+      <a href="#home" class="brand row center gap-8">
+        <img src="media/logo.png" alt="BallBrain Logo" class="brand-logo">
+      </a>
+      <nav class="nav-links hide-sm">
+        <a href="#pilot">Pilot</a>
+        <a href="#features">Features</a>
+        <a href="#gamification">Gamification</a>
+        <a href="#social">Community</a>
+        <a href="#how">How it works</a>
+        <a href="#download">Join Waitlist</a>
+        <a href="#faqs">FAQs</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="row gap-8">
+        <a class="btn solid hide-sm" href="#download">Join Waitlist</a>
+        <a class="btn outline hide-sm" href="#contact">Contact</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <img src="media/logo.png" alt="BallBrain Logo" class="mobile-menu-logo">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close mobile menu">
+          <span class="close-icon">×</span>
+        </button>
+      </div>
+      <div class="mobile-menu-separator"></div>
+      <div class="mobile-menu-links">
+        <a href="#pilot">PILOT</a>
+        <a href="#features">FEATURES</a>
+        <a href="#gamification">GAMIFICATION</a>
+        <a href="#social">COMMUNITY</a>
+        <a href="#how">HOW IT WORKS</a>
+        <a href="#download">JOIN WAITLIST</a>
+        <a href="#faqs">FAQS</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+
+    <div class="hero-bg">
+      <video class="cover" autoplay muted loop playsinline>
+        <source src="https://ballbrain.app/media/court-reel.mp4" />
+      </video>
+    </div>
+
+
+    <div class="container pad-y-96" style="position:relative;z-index:1">
+      <div class="stack-32 center">
+        <span class="badge"><span class="icon"><svg><use href="#icon-zap"/></svg></span> AI that respects your grind</span>
+        <h1>Train smarter. Eat better. <span class="pink">Hoop more.</span></h1>
+        <p class="hero-subtitle">Get your personalized 6-week meal plan and workout routine powered by AI. Build strength, improve your game, and achieve your basketball goals with science-backed training.</p>
+
+        <div class="hero-features">
+          <div class="feature-item">
+            <span class="icon pink"><svg><use href="#icon-dumbbell"/></svg></span>
+            <span>Personalized 6-week workout plan</span>
+          </div>
+          <div class="feature-item">
+            <span class="icon pink"><svg><use href="#icon-salad"/></svg></span>
+            <span>Custom meal plan for your goals</span>
+          </div>
+          <div class="feature-item">
+            <span class="icon pink"><svg><use href="#icon-activity"/></svg></span>
+            <span>Track progress & earn achievements</span>
+          </div>
+        </div>
+
+        <div class="row gap-20 wrap">
+          <a class="btn solid" href="#download"><span class="icon"><svg><use href="#icon-play"/></svg></span> Join Waitlist</a>
+          <a class="btn outline" href="#features">See Features <span class="icon"><svg><use href="#icon-chevron"/></svg></span></a>
+        </div>
+
+        <div class="row gap-16 center">
+          <div class="stars">
+            <span class="icon"><svg><use href="#icon-star"/></svg></span>
+            <span class="icon"><svg><use href="#icon-star"/></svg></span>
+            <span class="icon"><svg><use href="#icon-star"/></svg></span>
+            <span class="icon"><svg><use href="#icon-star"/></svg></span>
+            <span class="icon"><svg><use href="#icon-star"/></svg></span>
+          </div>
+          <span class="muted">4.9/5 from 500+ athletes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILOT -->
+  <section id="pilot" class="section">
+    <div class="orb orb-c"></div>
+    <div class="container stack-32">
+      <div class="section-head">
+        <p class="kicker">Pilot</p>
+        <h2>Deementor Academy • Nairobi</h2>
+        <p class="muted">6 weeks · Real athletes, real results</p>
+      </div>
+
+      <!-- Pilot Results Layout -->
+      <div class="pilot-layout">
+        <!-- Video Section -->
+        <div class="pilot-video">
+          <video id="pilotVideo" playsinline preload="metadata" poster="media/image.png" muted loop>
+            <source src="media/6-week-results.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-controls" id="videoControls">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+              <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-handle" id="progressHandle"></div>
+              </div>
+            </div>
+            
+            <!-- Control Buttons -->
+            <div class="controls-row">
+              <button class="control-btn" id="playPauseBtn" aria-label="Play/Pause">
+                <svg class="play-icon" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M8 5v14l11-7z"/>
+                </svg>
+                <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;">
+                  <path fill="currentColor" d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+              </button>
+              
+              <div class="volume-control">
+                <button class="control-btn" id="muteBtn" aria-label="Mute/Unmute">
+                  <svg class="mute-icon" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                  </svg>
+                  <svg class="unmute-icon" viewBox="0 0 24 24" style="display: none;">
+                    <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm7-.17v6.34L7.83 13H5v-2h2.83L10 8.83zm4-.86v8.05c1.48-.73 2.5-2.25 2.5-4.02s-1.02-3.29-2.5-4.03zm0-4.69v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                  </svg>
+                </button>
+                <div class="volume-slider-container">
+                  <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.7">
+                </div>
+              </div>
+              
+              <div class="time-display">
+                <span id="currentTime">0:00</span>
+                <span>/</span>
+                <span id="duration">0:00</span>
+              </div>
+              
+              <button class="control-btn" id="fullscreenBtn" aria-label="Fullscreen">
+                <svg class="fullscreen-icon" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                </svg>
+                <svg class="exit-fullscreen-icon" viewBox="0 0 24 24" style="display: none;">
+                  <path fill="currentColor" d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats and Features Section -->
+        <div class="pilot-content">
+          <!-- Stat tiles -->
+          <div class="grid-3 gap-16">
+            <div class="card center">
+              <p class="tiny muted">Vertical Jump</p>
+              <p class="count" data-from="54" data-to="59" data-suffix=" cm">59 cm</p>
+              <p class="tiny muted">+5 avg</p>
+            </div>
+            <div class="card center">
+              <p class="tiny muted">Agility T-Test</p>
+              <p class="count" data-from="12.6" data-to="11.2" data-suffix=" s">11.2 s</p>
+              <p class="tiny muted">-0.6 avg</p>
+            </div>
+            <div class="card center">
+              <p class="tiny muted">Broad Jump</p>
+              <p class="count" data-from="215" data-to="228" data-suffix=" cm">228 cm</p>
+              <p class="tiny muted">+13</p>
+            </div>
+          </div>
+
+          <!-- Player quotes -->
+          <div class="grid-4 gap-16">
+            <div class="card quote">
+              <span class="icon pink"><svg><use href="#icon-quote"/></svg></span>
+              <p>"My bounce and pace are different."</p>
+              <p class="tiny muted">— Wade D.</p>
+            </div>
+            <div class="card quote">
+              <span class="icon pink"><svg><use href="#icon-quote"/></svg></span>
+              <p>"The structure kept us consistent on school days."</p>
+              <p class="tiny muted">— Team Captain</p>
+            </div>
+            <div class="card quote">
+              <span class="icon pink"><svg><use href="#icon-quote"/></svg></span>
+              <p>"First step got quicker. Streaks kept me honest."</p>
+              <p class="tiny muted">— Ryan, Guard</p>
+            </div>
+            <div class="card quote">
+              <span class="icon pink"><svg><use href="#icon-quote"/></svg></span>
+              <p>"Meal timing = faster recovery."</p>
+              <p class="tiny muted">— Carol, Forward</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="section features-section">
+    <div class="orb orb-d"></div>
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Features</p>
+        <h2>Tools that keep you moving</h2>
+        <p class="muted">Built for daily momentum.</p>
+      </div>
+
+      <!-- Main feature showcase -->
+      <div class="feature-showcase">
+        <div class="feature-hero">
+          <div class="feature-card-large">
+            <div class="feature-icon-large">
+              <span class="icon"><svg><use href="#icon-brain"/></svg></span>
+            </div>
+            <h3>AI Personal Plans</h3>
+            <p>Tailored to your role & body.</p>
+            <div class="feature-highlight">Powered by advanced AI</div>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-dumbbell"/></svg></span></div>
+            <h4>30-min Sessions</h4>
+            <p>Warm-up · Work · Cool-down.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-salad"/></svg></span></div>
+            <h4>Smart Nutrition</h4>
+            <p>Local foods. Right timing.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-bars"/></svg></span></div>
+            <h4>Progress & Analytics</h4>
+            <p>Streaks. Reports. Wins.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-bell"/></svg></span></div>
+            <h4>Smart Nudges</h4>
+            <p>Right-time reminders.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAMIFICATION -->
+  <section id="gamification" class="section gamification-section">
+    <div class="orb orb-g"></div>
+    
+    <!-- Floating badges distributed around section -->
+    <div class="floating-badges">
+      <img src="media/first-badge.png" alt="First Workout Badge" class="floating-badge badge-1" />
+      <img src="media/consistency-badge.png" alt="Consistency Badge" class="floating-badge badge-2" />
+      <img src="media/weekly.png" alt="Weekly Badge" class="floating-badge badge-3" />
+      <img src="media/streak-badge.png" alt="Streak Badge" class="floating-badge badge-4" />
+      <img src="media/early-badge.png" alt="Early Bird Badge" class="floating-badge badge-5" />
+      <img src="media/night-badge.png" alt="Night Owl Badge" class="floating-badge badge-6" />
+      <img src="media/chef-badge.png" alt="Chef Badge" class="floating-badge badge-7" />
+      <img src="media/comeback-badge.png" alt="Comeback Badge" class="floating-badge badge-8" />
+      <img src="media/social-badge.png" alt="Social Badge" class="floating-badge badge-9" />
+      
+      <!-- Repeated badges for more visual impact -->
+      <img src="media/first-badge.png" alt="First Workout Badge" class="floating-badge badge-10" />
+      <img src="media/consistency-badge.png" alt="Consistency Badge" class="floating-badge badge-11" />
+      <img src="media/weekly.png" alt="Weekly Badge" class="floating-badge badge-12" />
+      <img src="media/streak-badge.png" alt="Streak Badge" class="floating-badge badge-13" />
+      <img src="media/early-badge.png" alt="Early Bird Badge" class="floating-badge badge-14" />
+      <img src="media/night-badge.png" alt="Night Owl Badge" class="floating-badge badge-15" />
+      <img src="media/chef-badge.png" alt="Chef Badge" class="floating-badge badge-16" />
+      <img src="media/comeback-badge.png" alt="Comeback Badge" class="floating-badge badge-17" />
+      <img src="media/social-badge.png" alt="Social Badge" class="floating-badge badge-18" />
+    </div>
+    
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Gamification</p>
+        <h2>Level up your game</h2>
+        <p class="muted">Stay motivated with achievements, streaks, and challenges that make training addictive.</p>
+      </div>
+
+      <div class="grid-3 gap-20 gamification-grid">
+        <div class="card center hover-lift gamification-card">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-crown"/></svg></span></div>
+          <p class="small">Achievements & Badges</p>
+          <p class="tiny muted">Unlock badges for milestones, consistency, and personal records.</p>
+        </div>
+        <div class="card center hover-lift gamification-card">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-activity"/></svg></span></div>
+          <p class="small">Streak Tracking</p>
+          <p class="tiny muted">Build momentum with daily workout and nutrition streaks.</p>
+        </div>
+        <div class="card center hover-lift gamification-card">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-star"/></svg></span></div>
+          <p class="small">Progress Levels</p>
+          <p class="tiny muted">Level up from Rookie to Pro with XP and skill progression.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section id="social" class="section community-section">
+    <div class="orb orb-h"></div>
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Community</p>
+        <h2>Train together, grow together</h2>
+        <p class="muted">Connect with fellow athletes, share progress, and push each other to new heights.</p>
+      </div>
+
+      <!-- Community features -->
+      <div class="community-features-vertical">
+        <div class="community-feature-card">
+          <div class="feature-icon">
+            <span class="icon"><svg><use href="#icon-bell"/></svg></span>
+          </div>
+          <div class="feature-content">
+            <h4>Team Challenges</h4>
+            <p>Join group challenges and compete with friends and teammates.</p>
+            <div class="coming-soon-badge">Coming Soon</div>
+          </div>
+        </div>
+        
+        <div class="community-feature-card">
+          <div class="feature-icon">
+            <span class="icon"><svg><use href="#icon-quote"/></svg></span>
+          </div>
+          <div class="feature-content">
+            <h4>Progress Sharing</h4>
+            <p>Share your wins, PRs, and milestones with the community.</p>
+          </div>
+        </div>
+        
+        <div class="community-feature-card">
+          <div class="feature-icon">
+            <span class="icon"><svg><use href="#icon-brain"/></svg></span>
+          </div>
+          <div class="feature-content">
+            <h4>Expert Tips</h4>
+            <p>Get advice from coaches and experienced players in the community.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Community stats -->
+      <div class="community-stats">
+        <div class="stat-item">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Active Athletes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Team Challenges</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label">Progress Posts</div>
+        </div>
+      </div>
+
+      <!-- Community CTA -->
+      <div class="community-cta">
+        <a class="btn solid community-btn" href="#contact">Join the Community</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="how" class="section">
+    <div class="orb orb-e"></div>
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">How it works</p>
+        <h2>From goals to game-ready</h2>
+        <p class="muted">3 steps. That’s it.</p>
+      </div>
+      <div class="grid-3 gap-16">
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-activity"/></svg></span></div>
+          <p class="small">1. Create your account</p>
+          <p class="tiny muted">Role · Body · Goals</p>
+        </div>
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-brain"/></svg></span></div>
+          <p class="small">2. Generate your tailored plan</p>
+          <p class="tiny muted">Training + Nutrition</p>
+        </div>
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-activity"/></svg></span></div>
+          <p class="small">3. Become the best version of you</p>
+          <p class="tiny muted">Track · Streaks · Wins</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITING LIST -->
+  <section id="download" class="section waiting-list-section">
+    <div class="orb orb-f"></div>
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Join the Waitlist</p>
+        <h2>Be among the first to experience BallBrain</h2>
+        <p class="muted">Get notified when the app launches and secure your spot for personalized AI-powered basketball training.</p>
+      </div>
+
+      <div class="waiting-list-container">
+        <div class="waiting-list-card">
+          <form id="waitingListForm" class="waiting-list-form" action="https://formspree.io/f/movpqovl" method="POST">
+            <input type="hidden" name="_subject" value="New BallBrain Waitlist Signup" />
+            <input class="input" type="text" name="name" required placeholder="Your name" />
+            <input class="input" type="email" name="email" required placeholder="Your email address" />
+            <input class="input" type="text" name="position" placeholder="Your position (e.g., Point Guard)" />
+            <div class="g-recaptcha" data-sitekey="6LeRlPcrAAAAANKaAP68x_IvjS4UxowuP7V-_ZPl"></div>
+            <button class="btn solid" type="submit">Join the Waitlist</button>
+            <p class="tiny muted">We'll notify you as soon as BallBrain is ready. No spam, just updates!</p>
+          </form>
+
+          <div class="waiting-list-benefits">
+            <div class="benefit-item">
+              <span class="icon pink"><svg><use href="#icon-zap"/></svg></span>
+              <div>
+                <h4>Early Access</h4>
+                <p>Be among the first to try BallBrain</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="icon pink"><svg><use href="#icon-star"/></svg></span>
+              <div>
+                <h4>Exclusive Updates</h4>
+                <p>Get the latest features and training tips</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="icon pink"><svg><use href="#icon-crown"/></svg></span>
+              <div>
+                <h4>Special Perks</h4>
+                <p>Receive launch day bonuses and rewards</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p class="muted small">Questions, partnerships, or press? Send us a note or DM.</p>
+      </div>
+      
+      <div class="grid-2 gap-32 stack-sm">
+        <form id="contactForm" class="card stack-16">
+          <input class="input" name="name" required placeholder="Your name" />
+          <input class="input" type="email" name="email" required placeholder="Your email" />
+          <textarea class="input" name="message" rows="5" required placeholder="Your message"></textarea>
+          <button class="btn solid" type="submit">Send message</button>
+          <p class="tiny muted">We'll open your email client to send the message to <u>hello@ballbrain.app</u>.</p>
+        </form>
+        <div class="card stack-16">
+          <h3 class="small">Follow & DM</h3>
+          <p class="tiny muted">We answer quickly on Instagram.</p>
+          <a class="btn outline" href="https://instagram.com/ballbrain.app" target="_blank" rel="noopener"> @ballbrain.app </a>
+          <p class="tiny muted">Email: hello@ballbrain.app</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faqs" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">FAQs</p>
+        <h2>Frequently Asked Questions</h2>
+        <p class="muted">Everything you need to know about BallBrain.</p>
+      </div>
+
+      <div class="faqs-grid">
+        <div class="faq-item">
+          <h3>What is BallBrain?</h3>
+          <p>BallBrain is an AI-powered basketball training and nutrition platform that creates personalized workout plans and meal plans tailored to your position, body type, and goals.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How does the AI personalization work?</h3>
+          <p>Our AI analyzes your role, body measurements, fitness level, and goals to create a custom 6-week program with daily workouts and meal plans optimized for basketball performance.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What equipment do I need?</h3>
+          <p>Most workouts can be done at home or in a gym with minimal equipment. We provide variations for different settings and adapt exercises based on what's available to you.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How long are the workouts?</h3>
+          <p>Each session is designed to be 30 minutes, including warm-up and cool-down. Perfect for busy schedules while ensuring effective training.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Are the meal plans customized?</h3>
+          <p>Yes! Our meal plans are tailored to your goals, local foods available in your region, and dietary preferences. Everything is timed for optimal performance and recovery.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I track my progress?</h3>
+          <p>Absolutely! Track your workouts, monitor your stats, build streaks, earn achievements, and see your improvement over time with our comprehensive analytics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container grid-4 gap-24">
+      <div class="stack-8">
+        <div class="row center gap-8"><span class="icon pink"><svg><use href="#icon-crown"/></svg></span><span class="brand-name">BallBrain</span></div>
+        <p class="tiny">Train smarter. Eat better. Hoop more.</p>
+      </div>
+      <div class="stack-8">
+        <p class="small">Company</p>
+        <a href="#" class="tiny link">About</a>
+        <a href="#" class="tiny link">Careers</a>
+        <a href="#" class="tiny link">Press</a>
+      </div>
+      <div class="stack-8">
+        <p class="small">Support</p>
+        <a href="#contact" class="tiny link">Help Center</a>
+        <a href="#contact" class="tiny link">Contact</a>
+      </div>
+      <div class="stack-8">
+        <p class="small">Legal</p>
+        <a href="#" class="tiny link">Privacy Policy</a>
+        <a href="#" class="tiny link">Terms of Service</a>
+        <p class="tiny muted">Created by Rork</p>
+      </div>
+    </div>
+    <div class="container tiny muted pad-y-32">© <span id="yy"></span> BallBrain. All rights reserved.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
