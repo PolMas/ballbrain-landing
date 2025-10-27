@@ -581,9 +581,20 @@ section{overflow-x:hidden}
 @media(min-width:1024px){.pilot-layout{gap:64px;margin:64px 0}}
 
 .pilot-video{flex:1;display:flex;justify-content:center;position:relative}
-.pilot-video video{max-width:100%;max-height:90vh;height:auto;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.pilot-video video{max-width:100%;max-height:90vh;height:auto;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.3);object-fit:cover;display:block}
 @media(min-width:768px){.pilot-video video{max-height:85vh}}
 @media(min-width:1024px){.pilot-video video{max-height:80vh}}
+
+/* Video Play Overlay */
+.video-play-overlay{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);border-radius:16px;cursor:pointer;transition:opacity 0.3s ease;z-index:10}
+.video-play-overlay.hidden{opacity:0;pointer-events:none}
+.large-play-btn{width:80px;height:80px;border:none;background:var(--pink);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;box-shadow:0 8px 24px rgba(255,64,129,0.4)}
+.large-play-btn:hover{transform:scale(1.1);box-shadow:0 12px 32px rgba(255,64,129,0.6)}
+.large-play-btn svg{width:36px;height:36px;fill:#000;margin-left:4px}
+@media(min-width:768px){
+  .large-play-btn{width:100px;height:100px}
+  .large-play-btn svg{width:44px;height:44px}
+}
 
 /* Video controls overlay */
 .video-controls{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:fit-content;max-width:100%;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:20px 16px 16px;opacity:0;transition:opacity 0.3s ease;pointer-events:none;border-radius:0 0 16px 16px}

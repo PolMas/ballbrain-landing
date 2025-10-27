@@ -189,30 +189,25 @@ if (pilotVideo && videoControls) {
 }
 
 if (pilotVideo) {
-  let autoplayTimeout;
+  const playOverlay = document.getElementById('playOverlay');
+  const largePlayBtn = document.getElementById('largePlayBtn');
   
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Clear any existing timeout
-        if (autoplayTimeout) clearTimeout(autoplayTimeout);
-        
-        // Delay autoplay by 1 second
-        autoplayTimeout = setTimeout(() => {
-          pilotVideo.play().catch(e => console.log('Video autoplay failed:', e));
-        }, 1000);
-      } else {
-        // Clear timeout if video goes out of view
-        if (autoplayTimeout) {
-          clearTimeout(autoplayTimeout);
-          autoplayTimeout = null;
-        }
-        pilotVideo.pause();
+  // Handle large play button click
+  if (largePlayBtn && playOverlay) {
+    largePlayBtn.addEventListener('click', () => {
+      // Play video with sound
+      pilotVideo.muted = false;
+      pilotVideo.play().catch(e => console.log('Video play failed:', e));
+      
+      // Show video controls
+      if (videoControls) {
+        videoControls.style.display = 'block';
       }
+      
+      // Hide play overlay
+      playOverlay.classList.add('hidden');
     });
-  }, { threshold: 0.5 });
-  
-  videoObserver.observe(pilotVideo);
+  }
 }
 
 // Play/Pause functionality

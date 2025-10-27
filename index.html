@@ -188,11 +188,21 @@
       <div class="pilot-layout">
         <!-- Video Section -->
         <div class="pilot-video">
-          <video id="pilotVideo" playsinline preload="metadata" poster="media/image.png" muted loop>
+          <video id="pilotVideo" playsinline preload="metadata" muted>
             <source src="media/6-week-results.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div class="video-controls" id="videoControls">
+          
+          <!-- Large Play Button Overlay -->
+          <div class="video-play-overlay" id="playOverlay">
+            <button class="large-play-btn" id="largePlayBtn" aria-label="Play Video">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="video-controls" id="videoControls" style="display: none;">
             <!-- Progress Bar -->
             <div class="progress-container">
               <div class="progress-bar" id="progressBar">
