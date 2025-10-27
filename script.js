@@ -192,6 +192,22 @@ if (pilotVideo) {
   const playOverlay = document.getElementById('playOverlay');
   const largePlayBtn = document.getElementById('largePlayBtn');
   
+  // Function to match overlay size to video size
+  function matchOverlaySize() {
+    if (playOverlay) {
+      const videoRect = pilotVideo.getBoundingClientRect();
+      playOverlay.style.width = `${videoRect.width}px`;
+      playOverlay.style.height = `${videoRect.height}px`;
+    }
+  }
+  
+  // Match overlay size on load and resize
+  if (playOverlay) {
+    matchOverlaySize();
+    window.addEventListener('resize', matchOverlaySize);
+    pilotVideo.addEventListener('loadedmetadata', matchOverlaySize);
+  }
+  
   // Handle large play button click
   if (largePlayBtn && playOverlay) {
     largePlayBtn.addEventListener('click', () => {
@@ -208,6 +224,17 @@ if (pilotVideo) {
       playOverlay.classList.add('hidden');
     });
   }
+  
+  // Pause video when scrolling out of view
+  const videoIntersectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting && !pilotVideo.paused) {
+        pilotVideo.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  videoIntersectionObserver.observe(pilotVideo);
 }
 
 // Play/Pause functionality
