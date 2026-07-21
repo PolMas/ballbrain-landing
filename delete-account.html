@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Delete Your Account — BallBrain</title>
+  <meta name="description" content="Learn how to permanently delete your BallBrain account and associated data." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="media/favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .legal-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    @media(min-width: 768px) {
+      .legal-page {
+        padding: 60px 32px;
+      }
+    }
+    .legal-page h1 {
+      color: var(--pink);
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+    }
+    .legal-page h2 {
+      color: var(--text);
+      font-size: clamp(24px, 3vw, 32px);
+      margin: 48px 0 16px;
+    }
+    .legal-page p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .legal-page ul,
+    .legal-page ol {
+      color: var(--muted);
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+    .legal-page li {
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .legal-page strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .back-link {
+      color: var(--pink);
+      display: inline-block;
+      font-weight: 500;
+      margin-bottom: 32px;
+    }
+    .back-link:hover {
+      color: var(--pinkDeep);
+    }
+    .deletion-card {
+      background: var(--card);
+      border: 1px solid var(--brd);
+      border-radius: 16px;
+      margin: 24px 0;
+      padding: 24px;
+    }
+    .deletion-card h2 {
+      margin-top: 0;
+    }
+    .support-link {
+      color: var(--pink);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container row between center">
+      <a href="index.html" class="brand row center gap-8">
+        <img src="media/logo.png" alt="BallBrain Logo" class="brand-logo">
+      </a>
+      <a class="btn outline" href="index.html">Back to Home</a>
+    </div>
+  </header>
+
+  <main class="legal-page">
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <h1>Delete Your BallBrain Account</h1>
+    <p>BallBrain users can permanently delete their account and associated data. Account deletion cannot be undone.</p>
+
+    <div class="deletion-card">
+      <h2>Delete your account in the app</h2>
+      <ol>
+        <li>Open the <strong>BallBrain</strong> app and sign in.</li>
+        <li>Open <strong>Profile</strong>, then select <strong>Settings</strong>.</li>
+        <li>Under <strong>Account</strong>, select <strong>Delete Account</strong>.</li>
+        <li>Enter your password and confirm deletion.</li>
+      </ol>
+      <p>Deletion starts immediately after your password is verified.</p>
+    </div>
+
+    <h2>If you cannot access the app</h2>
+    <p>
+      Email <a class="support-link" href="mailto:hello@ballbrain.app?subject=Delete%20my%20BallBrain%20account">hello@ballbrain.app</a>
+      from the email address associated with your account and use the subject
+      <strong>Delete my BallBrain account</strong>. We may ask you to verify your identity before completing the request.
+    </p>
+    <p>Team or coach account holders should also use this email process to request account deletion.</p>
+
+    <h2>Data deleted</h2>
+    <p>When an athlete account is deleted, BallBrain removes:</p>
+    <ul>
+      <li>The Firebase Authentication account</li>
+      <li>The main account and profile record, including email, username, name, birth date, country, position, and other profile information</li>
+      <li>Training plans, workout progress, streaks, points, badges, achievements, and related activity data stored with the account</li>
+      <li>Nutrition records</li>
+      <li>Vertical-jump test history and metadata</li>
+      <li>Notification inbox records, notification logs, and the push-notification token</li>
+      <li>Profile images stored by BallBrain</li>
+      <li>Username and email reservations</li>
+      <li>The athlete's team-roster link, if applicable</li>
+    </ul>
+
+    <h2>Data not controlled by BallBrain</h2>
+    <p>The deletion process does not remove:</p>
+    <ul>
+      <li>Images saved to your device's photo library</li>
+      <li>Content you shared to Instagram or another third-party service</li>
+      <li>Information stored by a third party under its own independent account or terms</li>
+    </ul>
+    <p>You must delete those items directly from your device or the relevant third-party service.</p>
+
+    <h2>Retention after deletion</h2>
+    <p>
+      BallBrain does not intentionally retain account data in its active systems after deletion completes.
+      Limited records may be retained only when required for legal obligations, dispute resolution,
+      fraud prevention, security, or enforcement, and only for as long as required for that purpose.
+      Residual copies may also remain temporarily in service-provider backups until those backups are overwritten under the provider's normal retention cycle.
+    </p>
+
+    <h2>Need help?</h2>
+    <p>
+      Contact <a class="support-link" href="mailto:hello@ballbrain.app">hello@ballbrain.app</a>.
+      For more information, read the <a class="support-link" href="privacy-policy.html">BallBrain Privacy Policy</a>.
+    </p>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-copyright">
+        <p class="tiny muted">© <span id="yy"></span> BallBrain. All rights reserved.</p>
+        <nav class="footer-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-service.html">Terms of Service</a>
+          <a href="delete-account.html">Delete Account</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yy').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
