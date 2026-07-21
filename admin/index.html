@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>BallBrain Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section id="login-view" class="auth-view">
+      <div class="brand">
+        <span class="brand-ball">BB</span>
+        <div>
+          <h1>BallBrain Admin</h1>
+          <p>Staff access only</p>
+        </div>
+      </div>
+
+      <form id="login-form" class="panel login-panel">
+        <label>
+          Email
+          <input id="email" type="email" autocomplete="username" value="hello@ballbrain.app" required />
+        </label>
+        <label>
+          Password
+          <input id="password" type="password" autocomplete="current-password" required />
+        </label>
+        <p id="login-error" class="error" role="alert"></p>
+        <button class="button primary" type="submit">Sign in</button>
+      </form>
+    </section>
+
+    <section id="admin-view" class="admin-view" hidden>
+      <header class="topbar">
+        <div class="brand compact">
+          <span class="brand-ball">BB</span>
+          <div>
+            <h1>BallBrain Admin</h1>
+            <p id="staff-email"></p>
+          </div>
+        </div>
+        <button id="sign-out" class="button secondary" type="button">Sign out</button>
+      </header>
+
+      <nav class="tabs" aria-label="Admin sections">
+        <button class="tab active" data-view="dashboard" type="button">Dashboard</button>
+        <button class="tab" data-view="players" type="button">Players</button>
+      </nav>
+
+      <section id="dashboard-section" class="view-section">
+        <div class="section-heading">
+          <div>
+            <h2>Player overview</h2>
+            <p>Current operational totals from protected Firestore records.</p>
+          </div>
+          <button id="refresh-summary" class="button secondary" type="button">Refresh</button>
+        </div>
+        <p id="summary-error" class="error" role="alert"></p>
+        <div id="summary-cards" class="stat-grid"></div>
+        <div class="panel table-panel">
+          <h3>Players by position</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Position</th><th>Players</th></tr></thead>
+              <tbody id="position-rows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="players-section" class="view-section" hidden>
+        <div class="section-heading">
+          <div>
+            <h2>Players</h2>
+            <p>Search and filter player records. Every search is audit logged.</p>
+          </div>
+        </div>
+
+        <form id="filter-form" class="panel filters">
+          <label>Username or user ID<input id="search" type="search" /></label>
+          <label>
+            Position
+            <select id="position">
+              <option value="">All positions</option>
+              <option>Point Guard</option>
+              <option>Shooting Guard</option>
+              <option>Small Forward</option>
+              <option>Power Forward</option>
+              <option>Center</option>
+            </select>
+          </label>
+          <label>Country<input id="country" type="text" /></label>
+          <label>Minimum height (cm)<input id="min-height" type="number" min="100" max="260" /></label>
+          <label>Maximum height (cm)<input id="max-height" type="number" min="100" max="260" /></label>
+          <label>Minimum age<input id="min-age" type="number" min="13" max="100" /></label>
+          <label>Maximum age<input id="max-age" type="number" min="13" max="100" /></label>
+          <label>
+            Activity
+            <select id="activity">
+              <option value="">Any activity</option>
+              <option value="7">Active in 7 days</option>
+              <option value="30">Active in 30 days</option>
+              <option value="90">Active in 90 days</option>
+            </select>
+          </label>
+          <button class="button primary" type="submit">Apply filters</button>
+        </form>
+
+        <p id="players-error" class="error" role="alert"></p>
+        <div class="panel table-panel">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Player</th><th>Position</th><th>Country</th><th>Height</th>
+                  <th>Age</th><th>Points</th><th>Last workout</th>
+                </tr>
+              </thead>
+              <tbody id="player-rows"></tbody>
+            </table>
+          </div>
+          <button id="load-more" class="button secondary" type="button" hidden>Load more</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="player-dialog">
+    <div class="dialog-heading">
+      <div>
+        <h2 id="player-name">Player</h2>
+        <p id="player-id"></p>
+      </div>
+      <button id="close-dialog" class="icon-button" aria-label="Close" type="button">×</button>
+    </div>
+    <p id="player-error" class="error" role="alert"></p>
+    <dl id="player-details" class="detail-grid"></dl>
+    <div class="sensitive">
+      <h3>Sensitive information</h3>
+      <p>Only reveal when operationally necessary. The action is audit logged.</p>
+      <button id="reveal-sensitive" class="button danger" type="button">Reveal sensitive fields</button>
+      <dl id="sensitive-details" class="detail-grid" hidden></dl>
+    </div>
+  </dialog>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
