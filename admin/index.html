@@ -49,6 +49,7 @@
 
       <nav class="tabs" aria-label="Admin sections">
         <button class="tab active" data-view="dashboard" type="button">Dashboard</button>
+        <button class="tab" data-view="pmf" type="button">PMF</button>
         <button class="tab" data-view="players" type="button">Players</button>
       </nav>
 
@@ -56,20 +57,83 @@
         <div class="section-heading">
           <div>
             <h2>Player overview</h2>
-            <p>Current operational totals from protected Firestore records.</p>
+            <p>Aggregated, privacy-safe metrics from protected Firestore records. <span id="summary-generated" class="muted-inline"></span></p>
           </div>
           <button id="refresh-summary" class="button secondary" type="button">Refresh</button>
         </div>
         <p id="summary-error" class="error" role="alert"></p>
-        <div id="summary-cards" class="stat-grid"></div>
+
+        <h3 class="group-title">Pirate metrics (AARRR)</h3>
+        <p class="funnel-note" id="pirate-note"></p>
+        <div id="pirate-metrics" class="metric-sections"></div>
+
+        <h3 class="group-title">Ops: workout completion &amp; plans</h3>
+        <div id="ops-metrics" class="metric-sections"></div>
+
+        <h3 class="group-title">Signup drop-off</h3>
+        <p class="funnel-note" id="signup-dropoff-note"></p>
+        <div id="signup-dropoff" class="panel funnel-panel"></div>
+
+        <h3 class="group-title">Activation funnel</h3>
+        <p class="funnel-note" id="funnel-note"></p>
+        <div id="activation-funnel" class="panel funnel-panel"></div>
+
+        <h3 class="group-title">Growth</h3>
+        <div id="cards-growth" class="stat-grid"></div>
+
+        <h3 class="group-title">Engagement</h3>
+        <div id="cards-engagement" class="stat-grid"></div>
+
+        <h3 class="group-title">Vertical jump</h3>
+        <div id="cards-vertical" class="stat-grid"></div>
+
+        <h3 class="group-title">Physical &amp; program</h3>
+        <div id="cards-physical" class="stat-grid"></div>
+
+        <h3 class="group-title">Distributions</h3>
+        <div id="charts-grid" class="charts-grid"></div>
+
+        <h3 class="group-title">Signups over time</h3>
+        <div class="panel">
+          <div id="chart-signups" class="bar-chart wide"></div>
+        </div>
+      </section>
+
+      <section id="pmf-section" class="view-section" hidden>
+        <div class="section-heading">
+          <div>
+            <h2>Product-market fit</h2>
+            <p>Player survey responses from the in-app PMF flow. <span id="pmf-generated" class="muted-inline"></span></p>
+          </div>
+          <button id="refresh-pmf" class="button secondary" type="button">Refresh</button>
+        </div>
+        <p id="pmf-error" class="error" role="alert"></p>
+        <p class="funnel-note" id="pmf-benchmark-note"></p>
+
+        <div id="cards-pmf" class="stat-grid"></div>
+
+        <h3 class="group-title">Disappointment breakdown</h3>
+        <div id="pmf-distribution" class="panel chart-panel"></div>
+
+        <h3 class="group-title">Recent responses</h3>
+        <p id="pmf-responses-error" class="error" role="alert"></p>
         <div class="panel table-panel">
-          <h3>Players by position</h3>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Position</th><th>Players</th></tr></thead>
-              <tbody id="position-rows"></tbody>
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>Response</th>
+                  <th>Main benefit</th>
+                  <th>Improvement</th>
+                  <th>Workouts</th>
+                  <th>Submitted</th>
+                </tr>
+              </thead>
+              <tbody id="pmf-rows"></tbody>
             </table>
           </div>
+          <button id="load-more-pmf" class="button secondary" type="button" hidden>Load more</button>
         </div>
       </section>
 
@@ -95,6 +159,7 @@
             </select>
           </label>
           <label>Country<input id="country" type="text" /></label>
+          <label>Team ID<input id="team-id" type="text" /></label>
           <label>Minimum height (cm)<input id="min-height" type="number" min="100" max="260" /></label>
           <label>Maximum height (cm)<input id="max-height" type="number" min="100" max="260" /></label>
           <label>Minimum age<input id="min-age" type="number" min="13" max="100" /></label>
@@ -118,7 +183,8 @@
               <thead>
                 <tr>
                   <th>Player</th><th>Position</th><th>Country</th><th>Height</th>
-                  <th>Age</th><th>Points</th><th>Last workout</th>
+                  <th>Age</th><th>Points</th><th>Best VJ</th><th>Plan wk</th>
+                  <th>Program</th><th>Last workout</th>
                 </tr>
               </thead>
               <tbody id="player-rows"></tbody>

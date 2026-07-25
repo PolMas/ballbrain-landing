@@ -1,13 +1,13 @@
 # BallBrain Admin
 
-Staff-only web console intended for `https://admin.ballbrain.app`.
+Staff-only web console for `https://admin.ballbrain.app`.
 
 ## Firebase setup
 
 1. In Firebase Console for project `basketball-b4410`, create or select a Web App.
-2. Copy its `apiKey` and `appId` into `firebase-config.js`.
+2. Copy its config into `firebase-config.js` (use `firebase-config.example.js` as a template).
 3. In Firebase Authentication, create the approved staff user. Do not commit a password.
-4. Grant that user's UID the server-managed `{ admin: true }` custom claim using the Admin SDK script in the mobile/backend repository:
+4. Grant that user's UID the server-managed `{ admin: true }` custom claim:
 
    ```bash
    GOOGLE_APPLICATION_CREDENTIALS=/secure/path/service-account.json \
@@ -15,19 +15,40 @@ Staff-only web console intended for `https://admin.ballbrain.app`.
    ```
 
 5. Add `admin.ballbrain.app` to Firebase Authentication's authorized domains.
-6. Deploy the callable admin Cloud Functions from the backend repository.
+6. Deploy the callable admin Cloud Functions from this repository, including:
+   - `adminGetPmfSummary`
+   - `adminListPmfResponses`
 
-The browser checks both the approved email and the custom claim. The Cloud Functions independently enforce the custom claim, which is the actual security boundary.
+The browser checks both the approved email and the custom claim. The Cloud Functions independently enforce the custom claim.
+
+## PMF tab
+
+The **PMF** tab shows in-app product-market fit survey results:
+
+- **PMF score** — % of respondents who chose "Very disappointed" (Sean Ellis benchmark: 40%+)
+- Breakdown by disappointment level
+- Recent responses with free-text feedback
+- Per-player PMF response on the player detail dialog
+
+Responses are stored in Firestore at `users/{userId}/pmfResponses`.
+
+## Dashboard metrics
+
+The **Dashboard** tab includes:
+
+- **Pirate metrics (AARRR)** — Acquisition, Activation, Retention, Referral (Instagram Story shares as MVP referral proxy). Revenue omitted until monetization.
+- **Ops** — workout planned vs completed rates, average plans generated per player (`planCycle`)
+- **Signup drop-off** — per-step views from the 14-step signup wizard (starts collecting after `recordSignupStep` is deployed)
+- Existing activation funnel, growth/engagement cards, and distributions
+
+Every pirate/ops card includes a short definition so the team shares the same meaning of “activated” vs “retained”.
 
 ## Deploy to `admin.ballbrain.app`
 
-Create a second Netlify site from the existing `ballbrain-landing` GitHub repository:
+This folder can be published from the `ballbrain-landing` repository (base directory: `admin`) or synced from this repo.
 
-- Base directory: `admin`
 - Build command: none
-- Publish directory: `.`
-
-Then add `admin.ballbrain.app` as that site's custom domain and create the DNS record Netlify requests. Keep the existing landing-page site on `ballbrain.app`.
+- Publish directory: `admin`
 
 ## Local preview
 
@@ -37,12 +58,4 @@ ES modules require an HTTP server:
 python3 -m http.server 8080 --directory admin
 ```
 
-Open `http://localhost:8080`.
-
-## Security notes
-
-- Never hardcode or commit the admin password.
-- Firebase web configuration is public; service-account credentials are not.
-- Player searches and record views are handled by callable functions and audit logged.
-- Sensitive fields require an explicit reveal, which generates a separate audit event.
-- The site sends `noindex` directives, but authorization—not obscurity—protects the data.
+Open `http://localhost:8080` (requires a local `firebase-config.js`).
