@@ -43,6 +43,13 @@ The **Dashboard** tab includes:
 
 Every pirate/ops card includes a short definition so the team shares the same meaning of “activated” vs “retained”.
 
+## Player deletion
+
+Open a player from **Players**, then use **Delete account** at the bottom of the dialog.
+Type the username (or user ID) to enable deletion, then confirm.
+
+The `adminDeleteUser` Cloud Function permanently removes Auth, Firestore profile/subcollections, username and email reservations, Storage profile images, public profile, and team roster links, and writes an audit log.
+
 ## Deploy to `admin.ballbrain.app`
 
 This folder can be published from the `ballbrain-landing` repository (base directory: `admin`) or synced from this repo.
