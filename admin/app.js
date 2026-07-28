@@ -23,9 +23,11 @@ const staffEmail = document.querySelector("#staff-email");
 const summaryError = document.querySelector("#summary-error");
 const playersError = document.querySelector("#players-error");
 const playerError = document.querySelector("#player-error");
+const deleteError = document.querySelector("#delete-error");
 const pmfError = document.querySelector("#pmf-error");
 const pmfResponsesError = document.querySelector("#pmf-responses-error");
 const playerDialog = document.querySelector("#player-dialog");
+const deleteDialog = document.querySelector("#delete-dialog");
 
 let auth;
 let listPlayers;
@@ -39,6 +41,8 @@ let nextPmfCursor = null;
 let activeFilters = {};
 let selectedPlayerId = null;
 let selectedPlayerUsername = "";
+let deletePendingUserId = null;
+let deletePendingUsername = "";
 
 const PMF_LABELS = {
   very: "Very disappointed",
@@ -643,6 +647,20 @@ const createPlayerRow = (player) => {
     cell.textContent = displayValue(value);
     row.append(cell);
   });
+
+  const actionsCell = document.createElement("td");
+  actionsCell.className = "actions-cell";
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "button danger table-action";
+  deleteButton.type = "button";
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    openDeleteDialog(player);
+  });
+  actionsCell.append(deleteButton);
+  row.append(actionsCell);
+
   const open = () => openPlayer(player.userId);
   row.addEventListener("click", open);
   row.addEventListener("keydown", (event) => {
@@ -687,13 +705,30 @@ const formatPmfFeedback = (pmf) => {
 
 const syncDeleteButton = () => {
   const input = document.querySelector("#delete-confirm-username");
-  const button = document.querySelector("#delete-user");
+  const button = document.querySelector("#confirm-delete");
   const typed = input.value.trim().toLowerCase();
-  const username = selectedPlayerUsername.trim().toLowerCase();
-  const userId = (selectedPlayerId || "").trim().toLowerCase();
+  const username = deletePendingUsername.trim().toLowerCase();
+  const userId = (deletePendingUserId || "").trim().toLowerCase();
   const matchesUsername = Boolean(username) && typed === username;
   const matchesUserId = Boolean(userId) && typed === userId;
   button.disabled = !(matchesUsername || matchesUserId);
+};
+
+const openDeleteDialog = (player) => {
+  deletePendingUserId = player.userId;
+  deletePendingUsername = player.username || "";
+  deleteError.textContent = "";
+
+  const label = deletePendingUsername
+    ? `@${deletePendingUsername}`
+    : deletePendingUserId;
+  document.querySelector("#delete-target-label").textContent = label;
+
+  const confirmInput = document.querySelector("#delete-confirm-username");
+  confirmInput.value = "";
+  syncDeleteButton();
+  deleteDialog.showModal();
+  confirmInput.focus();
 };
 
 const openPlayer = async (userId) => {
@@ -707,16 +742,12 @@ const openPlayer = async (userId) => {
   document.querySelector("#sensitive-details").replaceChildren();
   document.querySelector("#reveal-sensitive").disabled = false;
   document.querySelector("#reveal-sensitive").textContent = "Reveal sensitive fields";
-  const deleteConfirm = document.querySelector("#delete-confirm-username");
-  deleteConfirm.value = "";
-  syncDeleteButton();
   playerDialog.showModal();
   try {
     const { data } = await getPlayer({ userId, revealSensitive: false });
     selectedPlayerUsername = data.username || "";
     document.querySelector("#player-name").textContent =
       selectedPlayerUsername || "Player";
-    syncDeleteButton();
     renderDetails(document.querySelector("#player-details"), {
       "Masked email": data.emailMasked,
       Position: data.position,
@@ -783,42 +814,47 @@ const revealSensitive = async () => {
   }
 };
 
-const deleteSelectedUser = async () => {
-  const button = document.querySelector("#delete-user");
+const confirmDeleteUser = async () => {
+  const button = document.querySelector("#confirm-delete");
   const confirmInput = document.querySelector("#delete-confirm-username");
-  if (!selectedPlayerId) return;
+  if (!deletePendingUserId) return;
 
   const typed = confirmInput.value.trim();
-  const username = selectedPlayerUsername.trim();
+  const username = deletePendingUsername.trim();
   const matchesUsername =
     Boolean(username) && typed.toLowerCase() === username.toLowerCase();
-  const matchesUserId = typed.toLowerCase() === selectedPlayerId.toLowerCase();
+  const matchesUserId = typed.toLowerCase() === deletePendingUserId.toLowerCase();
   if (!matchesUsername && !matchesUserId) {
-    playerError.textContent = "Type the exact username or user ID to confirm deletion.";
+    deleteError.textContent = "Type the exact username or user ID to confirm deletion.";
     return;
   }
 
-  const label = username ? `@${username}` : selectedPlayerId;
+  const label = username ? `@${username}` : deletePendingUserId;
   const confirmed = window.confirm(
     `Permanently delete ${label}?\n\nThis removes Auth, profile, username/email reservations, training data, nutrition, vertical-jump history, notifications, profile images, and team roster links.`,
   );
   if (!confirmed) return;
 
-  playerError.textContent = "";
+  deleteError.textContent = "";
   setButtonBusy(button, true, "Deleting…");
   confirmInput.disabled = true;
   try {
     await deleteUser({
-      userId: selectedPlayerId,
+      userId: deletePendingUserId,
       confirmUsername: typed,
     });
-    playerDialog.close();
-    selectedPlayerId = null;
-    selectedPlayerUsername = "";
+    deleteDialog.close();
+    deletePendingUserId = null;
+    deletePendingUsername = "";
     confirmInput.value = "";
+    if (selectedPlayerId) {
+      playerDialog.close();
+      selectedPlayerId = null;
+      selectedPlayerUsername = "";
+    }
     await callPlayers();
   } catch (error) {
-    showError(playerError, error);
+    showError(deleteError, error);
   } finally {
     confirmInput.disabled = false;
     setButtonBusy(button, false, "");
@@ -903,9 +939,15 @@ document.querySelector("#load-more-pmf").addEventListener("click", () =>
 document.querySelector("#close-dialog").addEventListener("click", () =>
   playerDialog.close(),
 );
+document.querySelector("#close-delete-dialog").addEventListener("click", () =>
+  deleteDialog.close(),
+);
+document.querySelector("#cancel-delete").addEventListener("click", () =>
+  deleteDialog.close(),
+);
 document.querySelector("#reveal-sensitive").addEventListener("click", revealSensitive);
 document.querySelector("#delete-confirm-username").addEventListener("input", syncDeleteButton);
-document.querySelector("#delete-user").addEventListener("click", deleteSelectedUser);
+document.querySelector("#confirm-delete").addEventListener("click", confirmDeleteUser);
 
 document.querySelector("#filter-form").addEventListener("submit", (event) => {
   event.preventDefault();

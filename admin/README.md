@@ -45,8 +45,8 @@ Every pirate/ops card includes a short definition so the team shares the same me
 
 ## Player deletion
 
-Open a player from **Players**, then use **Delete account** at the bottom of the dialog.
-Type the username (or user ID) to enable deletion, then confirm.
+Open a player from **Players**, then use **Delete** in the Actions column.
+Type the username (or user ID) to confirm in the dialog.
 
 The `adminDeleteUser` Cloud Function permanently removes Auth, Firestore profile/subcollections, username and email reservations, Storage profile images, public profile, and team roster links, and writes an audit log.
 

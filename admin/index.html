@@ -184,7 +184,7 @@
                 <tr>
                   <th>Player</th><th>Position</th><th>Country</th><th>Height</th>
                   <th>Age</th><th>Points</th><th>Best VJ</th><th>Plan wk</th>
-                  <th>Program</th><th>Last workout</th>
+                  <th>Program</th><th>Last workout</th><th>Actions</th>
                 </tr>
               </thead>
               <tbody id="player-rows"></tbody>
@@ -212,17 +212,28 @@
       <button id="reveal-sensitive" class="button danger" type="button">Reveal sensitive fields</button>
       <dl id="sensitive-details" class="detail-grid" hidden></dl>
     </div>
-    <div class="danger-zone">
-      <h3>Delete account</h3>
-      <p>
-        Permanently deletes this player from Firebase Auth, Firestore, Storage,
-        username/email reservations, and related records. This cannot be undone.
-      </p>
-      <label class="confirm-label">
-        Type the username (or user ID) to confirm
-        <input id="delete-confirm-username" type="text" autocomplete="off" spellcheck="false" />
-      </label>
-      <button id="delete-user" class="button danger" type="button" disabled>Delete user permanently</button>
+  </dialog>
+
+  <dialog id="delete-dialog">
+    <div class="dialog-heading">
+      <div>
+        <h2>Delete account</h2>
+        <p id="delete-target-label"></p>
+      </div>
+      <button id="close-delete-dialog" class="icon-button" aria-label="Close" type="button">×</button>
+    </div>
+    <p id="delete-error" class="error" role="alert"></p>
+    <p class="delete-warning">
+      Permanently deletes this player from Firebase Auth, Firestore, Storage,
+      username/email reservations, and related records. This cannot be undone.
+    </p>
+    <label class="confirm-label">
+      Type the username (or user ID) to confirm
+      <input id="delete-confirm-username" type="text" autocomplete="off" spellcheck="false" />
+    </label>
+    <div class="dialog-actions">
+      <button id="cancel-delete" class="button secondary" type="button">Cancel</button>
+      <button id="confirm-delete" class="button danger" type="button" disabled>Delete permanently</button>
     </div>
   </dialog>
 
