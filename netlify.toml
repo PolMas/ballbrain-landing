@@ -1,0 +1,14 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/admin"
+  to = "https://admin.ballbrain.app/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/admin/*"
+  to = "https://admin.ballbrain.app/:splat"
+  status = 301
+  force = true
