@@ -33,14 +33,19 @@ let auth;
 let listPlayers;
 let getSummary;
 let getPlayer;
+let updatePlayer;
+let generateNewPlan;
+let listAchievements;
 let deleteUser;
 let getPmfSummary;
 let listPmfResponses;
 let nextCursor = null;
+let cachedAchievements = null;
 let nextPmfCursor = null;
 let activeFilters = {};
 let selectedPlayerId = null;
 let selectedPlayerUsername = "";
+let selectedPlayerBirthDate = null;
 let deletePendingUserId = null;
 let deletePendingUsername = "";
 
@@ -195,7 +200,7 @@ const renderPirateMetrics = (pirate) => {
 const renderOpsMetrics = (ops) => {
   const container = document.querySelector("#ops-metrics");
   if (!container) return;
-  const groups = [ops?.workoutCompletion, ops?.plansGenerated].filter(Boolean);
+  const groups = [ops?.tutorials, ops?.workoutCompletion, ops?.plansGenerated].filter(Boolean);
   container.replaceChildren(...groups.map(renderMetricGroup));
 };
 
@@ -465,6 +470,8 @@ const callSummary = async () => {
       ["Ever worked out", totals.everCompletedWorkout],
       ["Active programs", totals.activePrograms],
       ["Completed programs", totals.completedPrograms],
+      ["Tutorial watchers", totals.tutorialWatchers],
+      ["Tutorials watched", totals.totalTutorialsWatched],
     ]);
 
     renderStatCards("#cards-vertical", [
@@ -638,6 +645,8 @@ const createPlayerRow = (player) => {
     player.bestVerticalJumpCm ? `${player.bestVerticalJumpCm} cm` : null,
     player.currentPlanWeek,
     player.programStatus,
+    player.workoutsCompleted ?? 0,
+    player.recoveriesCompleted ?? 0,
     player.lastCompletedWorkoutAt
       ? new Date(player.lastCompletedWorkoutAt).toLocaleDateString()
       : null,
@@ -703,6 +712,44 @@ const formatPmfFeedback = (pmf) => {
   return parts.join(" · ");
 };
 
+const playerDetailFields = (data) => ({
+  "Masked email": data.emailMasked,
+  Gender: data.gender,
+  Position: data.position,
+  Country: data.country,
+  Height: data.heightCm ? `${data.heightCm} cm` : null,
+  Age: data.age,
+  Points: data.points,
+  Team: data.teamId,
+  "Program status": data.programStatus,
+  "Current plan week": data.currentPlanWeek,
+  "Completed plan weeks": data.completedPlanWeeks,
+  "Program completed": data.programCompletedAt
+    ? new Date(data.programCompletedAt).toLocaleDateString()
+    : null,
+  "Best vertical jump": data.bestVerticalJumpCm
+    ? `${data.bestVerticalJumpCm} cm`
+    : null,
+  "Current vertical jump": data.currentVerticalJumpCm
+    ? `${data.currentVerticalJumpCm} cm`
+    : null,
+  "VJ tests taken": data.verticalJumpTestsCount,
+  "Workouts completed": data.workoutsCompleted ?? 0,
+  "Recovery activities completed": data.recoveriesCompleted ?? 0,
+  "Basketball days/wk": data.basketballFrequencyPerWeek,
+  "Gym days/wk": data.gymAvailabilityPerWeek,
+  "Fitness goals": data.fitnessGoals,
+  Equipment: data.equipment,
+  Achievements: (data.achievements || []).map((a) => a.name || a.id).join(", ") || null,
+  "PMF response": formatPmfFeedback(data.pmfFeedback),
+  "Signup date": data.signupAt
+    ? new Date(data.signupAt).toLocaleDateString()
+    : null,
+  "Last workout": data.lastCompletedWorkoutAt
+    ? new Date(data.lastCompletedWorkoutAt).toLocaleString()
+    : null,
+});
+
 const syncDeleteButton = () => {
   const input = document.querySelector("#delete-confirm-username");
   const button = document.querySelector("#confirm-delete");
@@ -731,10 +778,39 @@ const openDeleteDialog = (player) => {
   confirmInput.focus();
 };
 
+const loadAchievements = async () => {
+  if (cachedAchievements) return cachedAchievements;
+  try {
+    const { data } = await listAchievements({});
+    cachedAchievements = data.achievements || [];
+  } catch {
+    cachedAchievements = [];
+  }
+  return cachedAchievements;
+};
+
+const populateAchievementDropdown = (achievements, playerAchievementIds = []) => {
+  const select = document.querySelector("#edit-achievement");
+  const options = [document.createElement("option")];
+  options[0].value = "";
+  options[0].textContent = "— Select achievement —";
+  achievements.forEach((ach) => {
+    const opt = document.createElement("option");
+    opt.value = ach.id;
+    const owned = playerAchievementIds.includes(ach.id) ? " ✓" : "";
+    opt.textContent = `${ach.name || ach.id}${owned}`;
+    options.push(opt);
+  });
+  select.replaceChildren(...options);
+};
+
 const openPlayer = async (userId) => {
   selectedPlayerId = userId;
   selectedPlayerUsername = "";
+  selectedPlayerBirthDate = null;
   playerError.textContent = "";
+  document.querySelector("#edit-error").textContent = "";
+  document.querySelector("#edit-success").textContent = "";
   document.querySelector("#player-name").textContent = "Loading…";
   document.querySelector("#player-id").textContent = userId;
   document.querySelector("#player-details").replaceChildren();
@@ -742,47 +818,159 @@ const openPlayer = async (userId) => {
   document.querySelector("#sensitive-details").replaceChildren();
   document.querySelector("#reveal-sensitive").disabled = false;
   document.querySelector("#reveal-sensitive").textContent = "Reveal sensitive fields";
+  document.querySelector("#edit-username").value = "";
+  document.querySelector("#edit-gender").value = "";
+  document.querySelector("#edit-achievement").replaceChildren();
+  const birthdateInput = document.querySelector("#edit-birthdate");
+  if (birthdateInput) {
+    birthdateInput.value = "";
+    birthdateInput.disabled = true;
+  }
   playerDialog.showModal();
   try {
     const { data } = await getPlayer({ userId, revealSensitive: false });
     selectedPlayerUsername = data.username || "";
     document.querySelector("#player-name").textContent =
       selectedPlayerUsername || "Player";
-    renderDetails(document.querySelector("#player-details"), {
-      "Masked email": data.emailMasked,
-      Position: data.position,
-      Country: data.country,
-      Height: data.heightCm ? `${data.heightCm} cm` : null,
-      Age: data.age,
-      Points: data.points,
-      Team: data.teamId,
-      "Program status": data.programStatus,
-      "Current plan week": data.currentPlanWeek,
-      "Completed plan weeks": data.completedPlanWeeks,
-      "Program completed": data.programCompletedAt
-        ? new Date(data.programCompletedAt).toLocaleDateString()
-        : null,
-      "Best vertical jump": data.bestVerticalJumpCm
-        ? `${data.bestVerticalJumpCm} cm`
-        : null,
-      "Current vertical jump": data.currentVerticalJumpCm
-        ? `${data.currentVerticalJumpCm} cm`
-        : null,
-      "VJ tests taken": data.verticalJumpTestsCount,
-      "Basketball days/wk": data.basketballFrequencyPerWeek,
-      "Gym days/wk": data.gymAvailabilityPerWeek,
-      "Fitness goals": data.fitnessGoals,
-      Equipment: data.equipment,
-      "PMF response": formatPmfFeedback(data.pmfFeedback),
-      "Signup date": data.signupAt
-        ? new Date(data.signupAt).toLocaleDateString()
-        : null,
-      "Last workout": data.lastCompletedWorkoutAt
-        ? new Date(data.lastCompletedWorkoutAt).toLocaleString()
-        : null,
-    });
+
+    document.querySelector("#edit-username").value = data.username || "";
+    document.querySelector("#edit-gender").value = data.gender || "";
+
+    renderDetails(document.querySelector("#player-details"), playerDetailFields(data));
+
+    const achievements = await loadAchievements();
+    const playerAchIds = (data.achievements || []).map((a) => a.id);
+    populateAchievementDropdown(achievements, playerAchIds);
+
+    const ownedSummary = document.querySelector("#owned-achievements");
+    if (ownedSummary) {
+      const ownedNames = (data.achievements || [])
+        .map((a) => a.name || a.id)
+        .filter(Boolean);
+      ownedSummary.textContent = ownedNames.length
+        ? `Unlocked: ${ownedNames.join(", ")}`
+        : "Unlocked: —";
+    }
   } catch (error) {
     showError(playerError, error);
+  }
+};
+
+const savePlayer = async () => {
+  const button = document.querySelector("#save-player");
+  const editError = document.querySelector("#edit-error");
+  const editSuccess = document.querySelector("#edit-success");
+  editError.textContent = "";
+  editSuccess.textContent = "";
+  if (!selectedPlayerId) return;
+
+  const updates = {};
+  const newUsername = document.querySelector("#edit-username").value.trim();
+  const newGender = document.querySelector("#edit-gender").value;
+  const achievementId = document.querySelector("#edit-achievement").value;
+  const birthdateInput = document.querySelector("#edit-birthdate");
+  const newBirthDate = birthdateInput?.value || "";
+
+  if (newUsername && newUsername !== selectedPlayerUsername) {
+    updates.username = newUsername;
+  }
+  if (newGender !== undefined) {
+    updates.gender = newGender || null;
+  }
+  if (achievementId) {
+    updates.addAchievementId = achievementId;
+  }
+  if (birthdateInput && birthdateInput.disabled !== true) {
+    if (newBirthDate && newBirthDate !== selectedPlayerBirthDate) {
+      updates.birthDate = newBirthDate;
+    }
+  }
+
+  if (!Object.keys(updates).length) {
+    editError.textContent = "No changes to save.";
+    return;
+  }
+
+  setButtonBusy(button, true, "Saving…");
+  try {
+    await updatePlayer({ userId: selectedPlayerId, ...updates });
+    editSuccess.textContent = "Player updated successfully.";
+    selectedPlayerUsername = newUsername || selectedPlayerUsername;
+    if (birthdateInput && birthdateInput.disabled !== true && newBirthDate) {
+      selectedPlayerBirthDate = newBirthDate;
+    }
+    document.querySelector("#player-name").textContent = selectedPlayerUsername || "Player";
+    // Refresh the detail view
+    const { data } = await getPlayer({ userId: selectedPlayerId, revealSensitive: false });
+    document.querySelector("#edit-username").value = data.username || "";
+    document.querySelector("#edit-gender").value = data.gender || "";
+    const achievements = await loadAchievements();
+    const playerAchIds = (data.achievements || []).map((a) => a.id);
+    populateAchievementDropdown(achievements, playerAchIds);
+    document.querySelector("#edit-achievement").value = "";
+    const ownedSummary = document.querySelector("#owned-achievements");
+    if (ownedSummary) {
+      const ownedNames = (data.achievements || [])
+        .map((a) => a.name || a.id)
+        .filter(Boolean);
+      ownedSummary.textContent = ownedNames.length
+        ? `Unlocked: ${ownedNames.join(", ")}`
+        : "Unlocked: —";
+    }
+
+    renderDetails(document.querySelector("#player-details"), playerDetailFields(data));
+  } catch (error) {
+    showError(editError, error);
+  } finally {
+    setButtonBusy(button, false, "");
+  }
+};
+
+const generatePlanForPlayer = async () => {
+  const button = document.querySelector("#generate-plan");
+  const editError = document.querySelector("#edit-error");
+  const editSuccess = document.querySelector("#edit-success");
+  editError.textContent = "";
+  editSuccess.textContent = "";
+  if (!selectedPlayerId) return;
+
+  const label = selectedPlayerUsername ? `@${selectedPlayerUsername}` : selectedPlayerId;
+  const confirmed = window.confirm(
+    `Generate a new plan for ${label}?\n\nThis will reset plan progress and overwrite the current plan text.`,
+  );
+  if (!confirmed) return;
+
+  setButtonBusy(button, true, "Generating…");
+  try {
+    await generateNewPlan({ userId: selectedPlayerId });
+    editSuccess.textContent = "Plan generated successfully.";
+
+    const { data } = await getPlayer({ userId: selectedPlayerId, revealSensitive: false });
+    selectedPlayerUsername = data.username || "";
+    document.querySelector("#player-name").textContent = selectedPlayerUsername || "Player";
+    document.querySelector("#edit-username").value = data.username || "";
+    document.querySelector("#edit-gender").value = data.gender || "";
+
+    const achievements = await loadAchievements();
+    const playerAchIds = (data.achievements || []).map((a) => a.id);
+    populateAchievementDropdown(achievements, playerAchIds);
+    document.querySelector("#edit-achievement").value = "";
+
+    const ownedSummary = document.querySelector("#owned-achievements");
+    if (ownedSummary) {
+      const ownedNames = (data.achievements || [])
+        .map((a) => a.name || a.id)
+        .filter(Boolean);
+      ownedSummary.textContent = ownedNames.length
+        ? `Unlocked: ${ownedNames.join(", ")}`
+        : "Unlocked: —";
+    }
+
+    renderDetails(document.querySelector("#player-details"), playerDetailFields(data));
+  } catch (error) {
+    showError(editError, error);
+  } finally {
+    setButtonBusy(button, false, "");
   }
 };
 
@@ -805,6 +993,17 @@ const revealSensitive = async () => {
       "Recovery goal": data.recoveryGoal,
     });
     details.hidden = false;
+
+    // Enable the DOB editor once sensitive fields have been revealed.
+    const birthdateInput = document.querySelector("#edit-birthdate");
+    if (birthdateInput) {
+      const raw = typeof data.birthDate === "string" ? data.birthDate : "";
+      // Firestore generally stores `yyyy-mm-dd`, but normalize defensively.
+      const iso = raw ? raw.slice(0, 10) : "";
+      birthdateInput.value = iso || "";
+      birthdateInput.disabled = false;
+      selectedPlayerBirthDate = iso || null;
+    }
   } catch (error) {
     showError(playerError, error);
     button.disabled = false;
@@ -888,6 +1087,9 @@ if (!configured) {
   listPlayers = httpsCallable(functions, "adminListPlayers");
   getSummary = httpsCallable(functions, "adminGetSummary");
   getPlayer = httpsCallable(functions, "adminGetPlayer");
+  updatePlayer = httpsCallable(functions, "adminUpdatePlayer");
+  generateNewPlan = httpsCallable(functions, "adminGenerateNewPlan");
+  listAchievements = httpsCallable(functions, "adminListAchievements");
   deleteUser = httpsCallable(functions, "adminDeleteUser");
   getPmfSummary = httpsCallable(functions, "adminGetPmfSummary");
   listPmfResponses = httpsCallable(functions, "adminListPmfResponses");
@@ -948,6 +1150,8 @@ document.querySelector("#cancel-delete").addEventListener("click", () =>
 document.querySelector("#reveal-sensitive").addEventListener("click", revealSensitive);
 document.querySelector("#delete-confirm-username").addEventListener("input", syncDeleteButton);
 document.querySelector("#confirm-delete").addEventListener("click", confirmDeleteUser);
+document.querySelector("#save-player").addEventListener("click", savePlayer);
+document.querySelector("#generate-plan").addEventListener("click", generatePlanForPlayer);
 
 document.querySelector("#filter-form").addEventListener("submit", (event) => {
   event.preventDefault();

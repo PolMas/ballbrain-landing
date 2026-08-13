@@ -377,6 +377,29 @@ dialog::backdrop { background: rgb(0 0 0 / 72%); }
 .detail-grid div { padding: 12px 0; border-bottom: 1px solid var(--border); }
 .detail-grid dt { color: var(--muted); }
 .detail-grid dd { margin: 3px 0 0; overflow-wrap: anywhere; }
+.edit-section {
+  margin-top: 26px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+.edit-section h3 { margin: 0 0 12px; }
+.edit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+.success {
+  min-height: 1.2em;
+  color: #4caf50;
+  font-weight: 600;
+}
+
 .sensitive,
 .danger-zone {
   margin-top: 26px;

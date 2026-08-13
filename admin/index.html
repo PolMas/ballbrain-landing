@@ -184,7 +184,8 @@
                 <tr>
                   <th>Player</th><th>Position</th><th>Country</th><th>Height</th>
                   <th>Age</th><th>Points</th><th>Best VJ</th><th>Plan wk</th>
-                  <th>Program</th><th>Last workout</th><th>Actions</th>
+                  <th>Program</th><th>Workouts</th><th>Recovery</th>
+                  <th>Last workout</th><th>Actions</th>
                 </tr>
               </thead>
               <tbody id="player-rows"></tbody>
@@ -206,6 +207,43 @@
     </div>
     <p id="player-error" class="error" role="alert"></p>
     <dl id="player-details" class="detail-grid"></dl>
+
+    <div class="edit-section">
+      <h3>Edit player</h3>
+      <p id="edit-error" class="error" role="alert"></p>
+      <p id="edit-success" class="success" role="status"></p>
+      <div class="edit-grid">
+        <label>
+          Username
+          <input id="edit-username" type="text" autocomplete="off" />
+        </label>
+        <label>
+          Gender
+          <select id="edit-gender">
+            <option value="">— Not set —</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <label>
+          Birth date (DOB)
+          <input id="edit-birthdate" type="date" disabled />
+        </label>
+        <label>
+          Assign achievement
+          <select id="edit-achievement">
+            <option value="">— Select achievement —</option>
+          </select>
+        </label>
+      </div>
+      <p id="owned-achievements" class="muted-inline"></p>
+      <div class="edit-actions">
+        <button id="save-player" class="button primary" type="button">Save changes</button>
+        <button id="generate-plan" class="button secondary" type="button">Generate new plan</button>
+      </div>
+    </div>
+
     <div class="sensitive">
       <h3>Sensitive information</h3>
       <p>Only reveal when operationally necessary. The action is audit logged.</p>
