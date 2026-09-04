@@ -3,13 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BallBrain — Train smarter. Eat better. Hoop more.</title>
-  <meta name="description" content="AI-powered basketball training and nutrition. 30-min sessions, local foods, streaks, and real results." />
+  <title>BallBrain — Train. Measure. Improve.</title>
+  <meta name="description" content="Personalized basketball training in 45-min sessions. Nutrition targets, vertical jump testing, and programs refined with a strength &amp; conditioning coach." />
+  <meta property="og:title" content="BallBrain — Train. Measure. Improve." />
+  <meta property="og:description" content="A personalized athlete development app for basketball. 45-min sessions, nutrition targets, and vertical jump testing." />
+  <meta property="og:image" content="https://ballbrain.app/media/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://ballbrain.app/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BallBrain — Train. Measure. Improve." />
+  <meta name="twitter:description" content="A personalized athlete development app for basketball. 45-min sessions, nutrition targets, and vertical jump testing." />
+  <meta name="twitter:image" content="https://ballbrain.app/media/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="video" href="https://ballbrain.app/media/court-reel.mp4" />
   <link rel="icon" type="image/png" href="media/favicon.png" />
+  <link rel="apple-touch-icon" href="media/apple-touch-icon.png" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
@@ -67,6 +79,12 @@
     <symbol id="icon-check" viewBox="0 0 24 24">
       <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
     </symbol>
+    <symbol id="icon-jump" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 4l6 6h-4v6h-4v-6H6l6-6zm-7 15h14v2H5v-2z"/>
+    </symbol>
+    <symbol id="icon-academy" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 3L1 9l4 2.18v6.12c0 .5.3 1.4 1.6 2.3C8.1 20.6 10 21 12 21s3.9-.4 5.4-1.4c1.3-.9 1.6-1.8 1.6-2.3v-6.12L23 9 12 3zm0 2.24L18.74 9 12 12.76 5.26 9 12 5.24zM7 12.9l5 2.73 5-2.73V17c-.2.3-.8.9-1.9 1.6-1.1.7-2.6 1-4.1 1s-3-.3-4.1-1C7.8 17.9 7.2 17.3 7 17v-4.1z"/>
+    </symbol>
   </svg>
 
   <header class="nav">
@@ -75,12 +93,12 @@
         <img src="media/logo.png" alt="BallBrain Logo" class="brand-logo">
       </a>
       <nav class="nav-links hide-sm">
-        <a href="#pilot">Pilot</a>
         <a href="#features">Features</a>
-        <a href="#gamification">Gamification</a>
-        <a href="#social">Community</a>
-        <a href="#pricing">Pricing</a>
         <a href="#how">How it works</a>
+        <a href="#gamification">Gamification</a>
+        <a href="#academy">Academy</a>
+        <a href="#pilot">Pilot</a>
+        <a href="#social">Compete</a>
         <a href="#download">Join Waitlist</a>
         <a href="#faqs">FAQs</a>
         <a href="#contact">Contact</a>
@@ -106,12 +124,12 @@
       </div>
       <div class="mobile-menu-separator"></div>
       <div class="mobile-menu-links">
-        <a href="#pilot">PILOT</a>
         <a href="#features">FEATURES</a>
-        <a href="#gamification">GAMIFICATION</a>
-        <a href="#social">COMMUNITY</a>
-        <a href="#pricing">PRICING</a>
         <a href="#how">HOW IT WORKS</a>
+        <a href="#gamification">GAMIFICATION</a>
+        <a href="#academy">ACADEMY</a>
+        <a href="#pilot">PILOT</a>
+        <a href="#social">COMPETE</a>
         <a href="#download">JOIN WAITLIST</a>
         <a href="#faqs">FAQS</a>
         <a href="#contact">CONTACT</a>
@@ -132,56 +150,240 @@
 
 
     <div class="container pad-y-96" style="position:relative;z-index:1">
-      <div class="stack-32 center">
-        <span class="badge"><span class="icon"><svg><use href="#icon-zap"/></svg></span> AI that respects your grind</span>
-        <h1>Train smarter. Eat better. <span class="pink">Hoop more.</span></h1>
-        <p class="hero-subtitle">Get your personalized 6-week meal plan and workout routine powered by AI. Build strength, improve your game, and achieve your basketball goals with science-backed training.</p>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="stack-32">
+            <span class="badge"><span class="icon"><svg><use href="#icon-zap"/></svg></span> Closed Android beta · Nairobi</span>
+            <h1>Train. Measure. <span class="pink">Improve.</span></h1>
+            <p class="hero-subtitle">A personalized 6-week training program shaped with a strength &amp; conditioning coach. Nutrition targets adapt to workout, game, and recovery days.</p>
 
-        <div class="hero-features">
-          <div class="feature-item">
-            <span class="icon pink"><svg><use href="#icon-dumbbell"/></svg></span>
-            <span>Personalized 6-week workout plan</span>
-          </div>
-          <div class="feature-item">
-            <span class="icon pink"><svg><use href="#icon-salad"/></svg></span>
-            <span>Custom meal plan for your goals</span>
-          </div>
-          <div class="feature-item">
-            <span class="icon pink"><svg><use href="#icon-activity"/></svg></span>
-            <span>Track progress & earn achievements</span>
+            <div class="hero-features">
+              <div class="feature-item">
+                <span class="icon pink"><svg><use href="#icon-dumbbell"/></svg></span>
+                <span>Personalized 6-week workout plan</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon pink"><svg><use href="#icon-salad"/></svg></span>
+                <span>Nutrition targets for workout, game &amp; recovery days</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon pink"><svg><use href="#icon-jump"/></svg></span>
+                <span>Vertical jump test &amp; progress tracking</span>
+              </div>
+            </div>
+
+            <div class="row gap-20 wrap">
+              <a class="btn solid" href="#download">Join Waitlist</a>
+              <a class="btn outline" href="#features">See Features <span class="icon"><svg><use href="#icon-chevron"/></svg></span></a>
+            </div>
           </div>
         </div>
 
-        <!-- Countdown Timer -->
-        <div class="countdown-container">
-          <p class="countdown-label">Launch Date: January 1, 2026</p>
-          <div class="countdown" id="countdown">
-            <div class="countdown-item">
-              <div class="countdown-value" id="days">00</div>
-              <div class="countdown-label-small">Days</div>
-            </div>
-            <div class="countdown-separator">:</div>
-            <div class="countdown-item">
-              <div class="countdown-value" id="hours">00</div>
-              <div class="countdown-label-small">Hours</div>
-            </div>
-            <div class="countdown-separator">:</div>
-            <div class="countdown-item">
-              <div class="countdown-value" id="minutes">00</div>
-              <div class="countdown-label-small">Minutes</div>
-            </div>
-            <div class="countdown-separator">:</div>
-            <div class="countdown-item">
-              <div class="countdown-value" id="seconds">00</div>
-              <div class="countdown-label-small">Seconds</div>
+        <div class="hero-devices" aria-hidden="true">
+          <div class="device device-left">
+            <img src="media/mockup-profile.png" alt="" />
+          </div>
+          <div class="device device-main">
+            <img src="media/mockup-home.png" alt="BallBrain home screen with today's workout" />
+          </div>
+          <div class="device device-right">
+            <img src="media/mockup-exercise.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="section features-section">
+    <div class="orb orb-d"></div>
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Features</p>
+        <h2>Your training plan. Built around you.</h2>
+        <p class="muted">Six-week programs based on your position, goals, injuries, equipment, and season — refined with a strength &amp; conditioning coach.</p>
+      </div>
+
+      <!-- Main feature showcase -->
+      <div class="feature-showcase">
+        <div class="feature-hero">
+          <div class="feature-mockup">
+            <div class="device">
+              <img src="media/mockup-home.png" alt="BallBrain daily workout screen" />
             </div>
           </div>
-          <p class="countdown-note">Priority access for waitlist members</p>
         </div>
 
-        <div class="row gap-20 wrap">
-          <a class="btn solid" href="#download">Join Waitlist</a>
-          <a class="btn outline" href="#features">See Features <span class="icon"><svg><use href="#icon-chevron"/></svg></span></a>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-dumbbell"/></svg></span></div>
+            <h4>45-min Sessions</h4>
+            <p>Warm-up · Work · Cool-down.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-salad"/></svg></span></div>
+            <h4>Nutrition Targets</h4>
+            <p>Adapted to workout, game, and recovery days.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-jump"/></svg></span></div>
+            <h4>Vertical Jump Test</h4>
+            <p>Measure bounce and track it over time.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-bars"/></svg></span></div>
+            <h4>Progress & Analytics</h4>
+            <p>Streaks. Reports. Workout history.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="how" class="section">
+    <div class="orb orb-e"></div>
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">How it works</p>
+        <h2>From athlete profile to daily execution</h2>
+        <p class="muted">4 steps. That’s it.</p>
+      </div>
+      <div class="grid-4 gap-16">
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-activity"/></svg></span></div>
+          <p class="small">1. Profile</p>
+          <p class="tiny muted">Goals · Position · Injuries · Equipment</p>
+        </div>
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-brain"/></svg></span></div>
+          <p class="small">2. Build the plan</p>
+          <p class="tiny muted">A 6-week plan with training + nutrition targets</p>
+        </div>
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-dumbbell"/></svg></span></div>
+          <p class="small">3. Execute</p>
+          <p class="tiny muted">45-min sessions · tutorials · substitutions</p>
+        </div>
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-jump"/></svg></span></div>
+          <p class="small">4. Measure</p>
+          <p class="tiny muted">Vertical jump · streaks · progress over time</p>
+        </div>
+      </div>
+
+      <div class="how-mockups" aria-hidden="true">
+        <div class="device">
+          <img src="media/mockup-profile.png" alt="" />
+        </div>
+        <div class="device">
+          <img src="media/mockup-building.png" alt="" />
+        </div>
+        <div class="device">
+          <img src="media/mockup-exercise.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAMIFICATION -->
+  <section id="gamification" class="section gamification-section">
+    <div class="orb orb-g"></div>
+    
+    <!-- Floating badges distributed around section -->
+    <div class="floating-badges">
+      <img src="media/first-badge.png" alt="First Workout Badge" class="floating-badge badge-1" />
+      <img src="media/consistency-badge.png" alt="Consistency Badge" class="floating-badge badge-2" />
+      <img src="media/weekly.png" alt="Weekly Badge" class="floating-badge badge-3" />
+      <img src="media/streak-badge.png" alt="Streak Badge" class="floating-badge badge-4" />
+      <img src="media/early-badge.png" alt="Early Bird Badge" class="floating-badge badge-5" />
+      <img src="media/night-badge.png" alt="Night Owl Badge" class="floating-badge badge-6" />
+      <img src="media/chef-badge.png" alt="Chef Badge" class="floating-badge badge-7" />
+      <img src="media/comeback-badge.png" alt="Comeback Badge" class="floating-badge badge-8" />
+      <img src="media/social-badge.png" alt="Social Badge" class="floating-badge badge-9" />
+      
+      <!-- Repeated badges for more visual impact -->
+      <img src="media/first-badge.png" alt="First Workout Badge" class="floating-badge badge-10" />
+      <img src="media/consistency-badge.png" alt="Consistency Badge" class="floating-badge badge-11" />
+      <img src="media/weekly.png" alt="Weekly Badge" class="floating-badge badge-12" />
+      <img src="media/streak-badge.png" alt="Streak Badge" class="floating-badge badge-13" />
+      <img src="media/early-badge.png" alt="Early Bird Badge" class="floating-badge badge-14" />
+      <img src="media/night-badge.png" alt="Night Owl Badge" class="floating-badge badge-15" />
+      <img src="media/chef-badge.png" alt="Chef Badge" class="floating-badge badge-16" />
+      <img src="media/comeback-badge.png" alt="Comeback Badge" class="floating-badge badge-17" />
+      <img src="media/social-badge.png" alt="Social Badge" class="floating-badge badge-18" />
+    </div>
+    
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Gamification</p>
+        <h2>Earn XP. Climb the board. Unlock badges.</h2>
+        <p class="muted">Every completed session, test, and streak feeds your athlete profile. XP, levels, and leaderboards keep the work visible — and competitive.</p>
+      </div>
+
+      <div class="gamification-layout">
+        <div class="gamification-mockup">
+          <div class="device">
+            <img src="media/mockup-achievements.png" alt="BallBrain achievements and XP progress" />
+          </div>
+        </div>
+
+        <div class="grid-2 gap-20 gamification-grid">
+          <div class="card center hover-lift gamification-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-star"/></svg></span></div>
+            <p class="small">XP for every session</p>
+            <p class="tiny muted">Finish workouts, recovery days, and tests to earn XP. Achievements pay out extra XP when you hit a milestone.</p>
+          </div>
+          <div class="card center hover-lift gamification-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-bars"/></svg></span></div>
+            <p class="small">Training leaderboard</p>
+            <p class="tiny muted">Your XP ranks you against other athletes on the training leaderboard — so consistency shows up next to talent.</p>
+          </div>
+          <div class="card center hover-lift gamification-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-crown"/></svg></span></div>
+            <p class="small">Achievements &amp; badges</p>
+            <p class="tiny muted">Unlock badges for first workouts, streaks, personal records, and showing up when it is hard.</p>
+          </div>
+          <div class="card center hover-lift gamification-card">
+            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-activity"/></svg></span></div>
+            <p class="small">Levels &amp; streaks</p>
+            <p class="tiny muted">Level up from Rookie as XP adds up. Daily streaks build momentum — rest days in the plan do not break them.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMY -->
+  <section id="academy" class="section academy-section">
+    <div class="container">
+      <div class="section-head">
+        <p class="kicker">Academy</p>
+        <h2>BallBrain Academy</h2>
+        <p class="muted">A learning layer for basketball skills and game situations — helping athletes understand the game, not only complete workouts.</p>
+        <span class="coming-soon-badge">Coming Soon</span>
+      </div>
+
+      <div class="grid-4 gap-16">
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-academy"/></svg></span></div>
+          <h4>Shooting &amp; finishing</h4>
+          <p class="tiny muted">Technique, footwork and game-context execution.</p>
+        </div>
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-activity"/></svg></span></div>
+          <h4>Rebounding</h4>
+          <p class="tiny muted">Positioning, timing and physical habits.</p>
+        </div>
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-zap"/></svg></span></div>
+          <h4>Ball handling</h4>
+          <p class="tiny muted">Control, change of pace and decision-making.</p>
+        </div>
+        <div class="card center">
+          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-brain"/></svg></span></div>
+          <h4>Pick situations</h4>
+          <p class="tiny muted">Reading screens, spacing and advantage creation.</p>
         </div>
       </div>
     </div>
@@ -190,11 +392,11 @@
   <!-- PILOT -->
   <section id="pilot" class="section">
     <div class="orb orb-c"></div>
-    <div class="container stack-32">
+    <div class="container">
       <div class="section-head">
         <p class="kicker">Pilot</p>
-        <h2>Deementor Academy • Nairobi</h2>
-        <p class="muted">6 weeks · Real athletes, real results</p>
+        <h2>Measured progress in Nairobi</h2>
+        <p class="muted">We ran a six-week structured development program with 10 players from Deementor Academy. The goal was simple: give athletes a consistent plan around school days, then measure whether bounce, speed, and endurance actually moved. We tracked broad jump, pro-agility, and jump endurance, plus athlete feedback on consistency and recovery.</p>
       </div>
 
       <!-- Pilot Results Layout -->
@@ -300,128 +502,24 @@
             <div class="card quote">
               <span class="icon pink"><svg><use href="#icon-quote"/></svg></span>
               <p>"My bounce and pace are different."</p>
-              <p class="tiny muted">— Wade D.</p>
+              <p class="tiny muted">— Wade, Point Guard</p>
             </div>
             <div class="card quote">
               <span class="icon pink"><svg><use href="#icon-quote"/></svg></span>
               <p>"The structure kept us consistent on school days."</p>
-              <p class="tiny muted">— Team Captain</p>
+              <p class="tiny muted">— Kuc, Shooting Guard</p>
             </div>
             <div class="card quote">
               <span class="icon pink"><svg><use href="#icon-quote"/></svg></span>
               <p>"First step got quicker. Streaks kept me honest."</p>
-              <p class="tiny muted">— Ryan, Guard</p>
+              <p class="tiny muted">— Mabior, Center</p>
             </div>
             <div class="card quote">
               <span class="icon pink"><svg><use href="#icon-quote"/></svg></span>
               <p>"Meal timing = faster recovery."</p>
-              <p class="tiny muted">— Carol, Forward</p>
+              <p class="tiny muted">— Carol, Small Forward</p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section id="features" class="section features-section">
-    <div class="orb orb-d"></div>
-    <div class="container">
-      <div class="section-head">
-        <p class="kicker">Features</p>
-        <h2>Tools that keep you moving</h2>
-        <p class="muted">Built for daily momentum.</p>
-      </div>
-
-      <!-- Main feature showcase -->
-      <div class="feature-showcase">
-        <div class="feature-hero">
-          <div class="feature-card-large">
-            <div class="feature-icon-large">
-              <span class="icon"><svg><use href="#icon-brain"/></svg></span>
-            </div>
-            <h3>AI Personal Plans</h3>
-            <p>Tailored to your role & body.</p>
-            <div class="feature-highlight">Powered by advanced AI</div>
-          </div>
-        </div>
-
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-dumbbell"/></svg></span></div>
-            <h4>30-min Sessions</h4>
-            <p>Warm-up · Work · Cool-down.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-salad"/></svg></span></div>
-            <h4>Smart Nutrition</h4>
-            <p>Local foods. Right timing.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-bars"/></svg></span></div>
-            <h4>Progress & Analytics</h4>
-            <p>Streaks. Reports. Wins.</p>
-          </div>
-          <div class="feature-card">
-            <div class="icon-bubble"><span class="icon"><svg><use href="#icon-bell"/></svg></span></div>
-            <h4>Smart Nudges</h4>
-            <p>Right-time reminders.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GAMIFICATION -->
-  <section id="gamification" class="section gamification-section">
-    <div class="orb orb-g"></div>
-    
-    <!-- Floating badges distributed around section -->
-    <div class="floating-badges">
-      <img src="media/first-badge.png" alt="First Workout Badge" class="floating-badge badge-1" />
-      <img src="media/consistency-badge.png" alt="Consistency Badge" class="floating-badge badge-2" />
-      <img src="media/weekly.png" alt="Weekly Badge" class="floating-badge badge-3" />
-      <img src="media/streak-badge.png" alt="Streak Badge" class="floating-badge badge-4" />
-      <img src="media/early-badge.png" alt="Early Bird Badge" class="floating-badge badge-5" />
-      <img src="media/night-badge.png" alt="Night Owl Badge" class="floating-badge badge-6" />
-      <img src="media/chef-badge.png" alt="Chef Badge" class="floating-badge badge-7" />
-      <img src="media/comeback-badge.png" alt="Comeback Badge" class="floating-badge badge-8" />
-      <img src="media/social-badge.png" alt="Social Badge" class="floating-badge badge-9" />
-      
-      <!-- Repeated badges for more visual impact -->
-      <img src="media/first-badge.png" alt="First Workout Badge" class="floating-badge badge-10" />
-      <img src="media/consistency-badge.png" alt="Consistency Badge" class="floating-badge badge-11" />
-      <img src="media/weekly.png" alt="Weekly Badge" class="floating-badge badge-12" />
-      <img src="media/streak-badge.png" alt="Streak Badge" class="floating-badge badge-13" />
-      <img src="media/early-badge.png" alt="Early Bird Badge" class="floating-badge badge-14" />
-      <img src="media/night-badge.png" alt="Night Owl Badge" class="floating-badge badge-15" />
-      <img src="media/chef-badge.png" alt="Chef Badge" class="floating-badge badge-16" />
-      <img src="media/comeback-badge.png" alt="Comeback Badge" class="floating-badge badge-17" />
-      <img src="media/social-badge.png" alt="Social Badge" class="floating-badge badge-18" />
-    </div>
-    
-    <div class="container">
-      <div class="section-head">
-        <p class="kicker">Gamification</p>
-        <h2>Level up your game</h2>
-        <p class="muted">Stay motivated with achievements, streaks, and challenges that make training addictive.</p>
-      </div>
-
-      <div class="grid-3 gap-20 gamification-grid">
-        <div class="card center hover-lift gamification-card">
-          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-crown"/></svg></span></div>
-          <p class="small">Achievements & Badges</p>
-          <p class="tiny muted">Unlock badges for milestones, consistency, and personal records.</p>
-        </div>
-        <div class="card center hover-lift gamification-card">
-          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-activity"/></svg></span></div>
-          <p class="small">Streak Tracking</p>
-          <p class="tiny muted">Build momentum with daily workout and nutrition streaks.</p>
-        </div>
-        <div class="card center hover-lift gamification-card">
-          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-star"/></svg></span></div>
-          <p class="small">Progress Levels</p>
-          <p class="tiny muted">Level up from Rookie to Pro with XP and skill progression.</p>
         </div>
       </div>
     </div>
@@ -432,85 +530,42 @@
     <div class="orb orb-h"></div>
     <div class="container">
       <div class="section-head">
-        <p class="kicker">Community</p>
-        <h2>Train together, grow together</h2>
-        <p class="muted">Connect with fellow athletes, share progress, and push each other to new heights.</p>
+        <p class="kicker">Compete &amp; share</p>
+        <h2>See how you stack up. Post the wins.</h2>
+        <p class="muted">Leaderboards and social sharing keep the work visible. Compete on XP and vertical jump, then post achievements when you want them to travel.</p>
       </div>
 
-      <!-- Community features -->
-      <div class="community-features-vertical">
+      <div class="community-grid">
         <div class="community-feature-card">
           <div class="feature-icon">
-            <span class="icon"><svg><use href="#icon-bell"/></svg></span>
+            <span class="icon"><svg><use href="#icon-bars"/></svg></span>
           </div>
           <div class="feature-content">
-            <h4>Team Challenges</h4>
-            <p>Join group challenges and compete with friends and teammates.</p>
-            <div class="coming-soon-badge">Coming Soon</div>
+            <h4>Training &amp; jump leaderboards</h4>
+            <p>XP ranks you on the training board. The vertical jump leaderboard is a separate scoreboard for bounce.</p>
           </div>
         </div>
         
         <div class="community-feature-card">
           <div class="feature-icon">
-            <span class="icon"><svg><use href="#icon-quote"/></svg></span>
+            <span class="icon"><svg><use href="#icon-star"/></svg></span>
           </div>
           <div class="feature-content">
-            <h4>Progress Sharing</h4>
-            <p>Share your wins, PRs, and milestones with the community.</p>
-          </div>
-        </div>
-        
-        <div class="community-feature-card">
-          <div class="feature-icon">
-            <span class="icon"><svg><use href="#icon-brain"/></svg></span>
-          </div>
-          <div class="feature-content">
-            <h4>Expert Tips</h4>
-            <p>Get advice from coaches and experienced players in the community.</p>
+            <h4>Share to social</h4>
+            <p>Post achievements, PRs, and progress to your social channels when you want the work to travel.</p>
           </div>
         </div>
       </div>
 
-      <!-- Waitlist Counter -->
       <div class="waitlist-counter">
         <div class="waitlist-stat">
           <div class="waitlist-number" data-target="247">0</div>
-          <div class="waitlist-label">People Joined the Waitlist</div>
+          <div class="waitlist-label">Athletes on the waitlist</div>
         </div>
       </div>
 
-      <!-- Community CTA -->
       <div class="community-cta">
-        <a class="btn solid community-btn" href="#download">Join the Community</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW -->
-  <section id="how" class="section">
-    <div class="orb orb-e"></div>
-    <div class="container">
-      <div class="section-head">
-        <p class="kicker">How it works</p>
-        <h2>From goals to game-ready</h2>
-        <p class="muted">3 steps. That’s it.</p>
-      </div>
-      <div class="grid-3 gap-16">
-        <div class="card center">
-          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-activity"/></svg></span></div>
-          <p class="small">1. Create your account</p>
-          <p class="tiny muted">Role · Body · Goals</p>
-        </div>
-        <div class="card center">
-          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-brain"/></svg></span></div>
-          <p class="small">2. Generate your tailored plan</p>
-          <p class="tiny muted">Training + Nutrition</p>
-        </div>
-        <div class="card center">
-          <div class="icon-bubble"><span class="icon"><svg><use href="#icon-activity"/></svg></span></div>
-          <p class="small">3. Become the best version of you</p>
-          <p class="tiny muted">Track · Streaks · Wins</p>
-        </div>
+        <a class="btn solid community-btn" href="#download">Join the Waitlist</a>
       </div>
     </div>
   </section>
@@ -522,7 +577,7 @@
       <div class="section-head">
         <p class="kicker">Join the Waitlist</p>
         <h2>Be among the first to experience BallBrain</h2>
-        <p class="muted">Get notified when the app launches and secure your spot for personalized AI-powered basketball training.</p>
+        <p class="muted">Get notified when the app launches and secure your spot for personalized basketball training.</p>
       </div>
 
       <div class="waiting-list-container">
@@ -560,173 +615,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing" class="section pricing-section">
-    <div class="orb orb-p"></div>
-    <div class="container">
-      <div class="section-head">
-        <p class="kicker">Choose Your Plan</p>
-        <h2>Simple, Transparent Pricing</h2>
-        <p class="muted">Start for free and upgrade when you're ready. Early access pricing for our first 100 users.</p>
-      </div>
-
-      <div class="pricing-grid">
-        <!-- Free Tier -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3>Free</h3>
-            <div class="pricing-price">
-              <span class="price-amount">KES 0</span>
-            </div>
-          </div>
-          <ul class="pricing-features">
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>1-day workout and meal plan</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>Basic features</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>No credit card required</span>
-            </li>
-          </ul>
-          <a class="btn outline pricing-btn" href="#download">Try Free</a>
-        </div>
-
-        <!-- Monthly Tier -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3>Monthly</h3>
-            <div class="pricing-price">
-              <span class="price-amount">KES 699</span>
-              <span class="price-period">/month</span>
-            </div>
-          </div>
-          <ul class="pricing-features">
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>Full workout plans</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>Custom meal plans</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>Progress tracking</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>Achievement system</span>
-            </li>
-          </ul>
-          <a class="btn solid pricing-btn" href="#download">Get Started</a>
-        </div>
-
-        <!-- Annual Tier -->
-        <div class="pricing-card featured">
-          <div class="featured-badge">Best Value</div>
-          <div class="pricing-header">
-            <h3>Annual</h3>
-            <div class="pricing-price">
-              <span class="price-amount">KES 4,900</span>
-              <span class="price-period">/year</span>
-            </div>
-            <p class="price-savings">Save 42% compared to monthly</p>
-          </div>
-          <ul class="pricing-features">
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>Everything in Monthly</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>12 months for the price of 7</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>Priority support</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>All future updates</span>
-            </li>
-          </ul>
-          <a class="btn solid pricing-btn" href="#download">Get Started</a>
-        </div>
-
-        <!-- Lifetime Tier -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3>Lifetime</h3>
-            <div class="pricing-price">
-              <span class="price-amount">KES 8,900</span>
-              <span class="price-period">one-time</span>
-            </div>
-          </div>
-          <ul class="pricing-features">
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>Everything in Annual</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>Lifetime access</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>All future features</span>
-            </li>
-            <li>
-              <span class="icon green"><svg><use href="#icon-check"/></svg></span>
-              <span>No recurring fees</span>
-            </li>
-          </ul>
-          <a class="btn solid pricing-btn" href="#download">Get Started</a>
-        </div>
-
-        <!-- Early Access Tier -->
-        <div class="pricing-card early-access">
-          <div class="early-access-badge">Limited to 100 Users</div>
-          <div class="pricing-header">
-            <h3>Early Access</h3>
-            <div class="pricing-price">
-              <span class="price-amount">KES 3,900</span>
-              <span class="price-period">one-time</span>
-            </div>
-            <p class="price-savings">Save 56% off Lifetime</p>
-          </div>
-          <ul class="pricing-features">
-            <li>
-              <span class="icon pink"><svg><use href="#icon-check"/></svg></span>
-              <span>Full Lifetime Access</span>
-            </li>
-            <li>
-              <span class="icon pink"><svg><use href="#icon-check"/></svg></span>
-              <span>All Premium Features</span>
-            </li>
-            <li>
-              <span class="icon pink"><svg><use href="#icon-check"/></svg></span>
-              <span>Priority Support</span>
-            </li>
-            <li>
-              <span class="icon pink"><svg><use href="#icon-check"/></svg></span>
-              <span>Exclusive Early Access</span>
-            </li>
-            <li>
-              <span class="icon pink"><svg><use href="#icon-check"/></svg></span>
-              <span>Founder's Badge</span>
-            </li>
-          </ul>
-          <a class="btn solid pricing-btn" href="#download">Claim Early Access</a>
         </div>
       </div>
     </div>
@@ -789,11 +677,11 @@
         <!-- Instagram Profile -->
         <div class="instagram-profile">
           <div class="instagram-icon">
-            <img src="media/favicon.png" alt="BallBrain Logo" />
+            <img src="media/apple-touch-icon.png" alt="BallBrain Logo" />
           </div>
           <div class="instagram-info">
             <h3>@ballbrain.app</h3>
-            <p class="muted">Follow us for training tips, nutrition advice, and exclusive updates</p>
+            <p class="muted">Follow us for training tips, athlete updates, and exclusive behind-the-scenes content</p>
             <a class="btn solid instagram-btn" href="https://instagram.com/ballbrain.app" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -820,32 +708,47 @@
       <div class="faqs-grid">
         <div class="faq-item">
           <h3>What is BallBrain?</h3>
-          <p>BallBrain is an AI-powered basketball training and nutrition platform that creates personalized workout plans and meal plans tailored to your position, body type, and goals.</p>
+          <p>BallBrain is a personalized athlete development app for basketball. It combines structured 6-week training programs, nutrition targets, vertical jump testing, and progress tracking in one place.</p>
         </div>
 
         <div class="faq-item">
-          <h3>How does the AI personalization work?</h3>
-          <p>Our AI analyzes your role, body measurements, fitness level, and goals to create a custom 6-week program with daily workouts and meal plans optimized for basketball performance.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>What equipment do I need?</h3>
-          <p>Most workouts can be done at home or in a gym with minimal equipment. We provide variations for different settings and adapt exercises based on what's available to you.</p>
+          <h3>How are the plans personalized?</h3>
+          <p>BallBrain builds a 6-week program around your profile — position, goals, injuries, equipment, and competitive cycle. A strength &amp; conditioning coach refines the methodology behind the plans, so training reflects real athlete-development principles rather than a generic template.</p>
         </div>
 
         <div class="faq-item">
           <h3>How long are the workouts?</h3>
-          <p>Each session is designed to be 30 minutes, including warm-up and cool-down. Perfect for busy schedules while ensuring effective training.</p>
+          <p>Each session is designed to be 45 minutes, including warm-up and cool-down. Plans also adapt for pre-season, in-season, and off-season.</p>
         </div>
 
         <div class="faq-item">
-          <h3>Are the meal plans customized?</h3>
-          <p>Yes! Our meal plans are tailored to your goals, local foods available in your region, and dietary preferences. Everything is timed for optimal performance and recovery.</p>
+          <h3>Do you provide meal plans?</h3>
+          <p>Not custom meal plans. BallBrain gives nutrition targets based on the type of day you have — workout day, game day, or recovery day — so you know what to aim for without a full menu.</p>
         </div>
 
         <div class="faq-item">
-          <h3>Can I track my progress?</h3>
-          <p>Absolutely! Track your workouts, monitor your stats, build streaks, earn achievements, and see your improvement over time with our comprehensive analytics.</p>
+          <h3>How do XP, levels, and leaderboards work?</h3>
+          <p>You earn XP by completing sessions, tests, and achievements. XP levels you up and ranks you on the training leaderboard. There is a separate vertical jump leaderboard for bounce. Rest days in your plan do not break your streak.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What is the vertical jump test?</h3>
+          <p>It is an in-app test that measures your bounce and adds it to your athlete profile. You can track improvement over time and compete on the vertical jump leaderboard.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What equipment do I need?</h3>
+          <p>Most workouts can be done at home or in a gym. During onboarding you tell us what equipment you have, and the plan adapts — including substitutions when something is not available.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What is BallBrain Academy?</h3>
+          <p>Academy is coming soon. It will be a learning layer for basketball skills and game situations — shooting and finishing, rebounding, ball handling, and pick situations — so athletes understand the game, not only complete workouts.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How much does BallBrain cost?</h3>
+          <p>BallBrain is currently in closed Android beta and we are not charging while we focus on product-market fit. Join the waitlist to get access as we open up.</p>
         </div>
       </div>
     </div>
@@ -856,15 +759,15 @@
       <div class="footer-content">
         <div class="footer-brand">
           <img src="media/logo.png" alt="BallBrain Logo" class="footer-logo">
-          <p class="tiny">Train smarter. Eat better. Hoop more.</p>
+          <p class="tiny">Train. Measure. Improve.</p>
         </div>
         <nav class="footer-nav">
-          <a href="#pilot">Pilot</a>
           <a href="#features">Features</a>
-          <a href="#gamification">Gamification</a>
-          <a href="#social">Community</a>
-          <a href="#pricing">Pricing</a>
           <a href="#how">How it works</a>
+          <a href="#gamification">Gamification</a>
+          <a href="#academy">Academy</a>
+          <a href="#pilot">Pilot</a>
+          <a href="#social">Compete</a>
           <a href="#download">Join Waitlist</a>
           <a href="#faqs">FAQs</a>
           <a href="#contact">Contact</a>
