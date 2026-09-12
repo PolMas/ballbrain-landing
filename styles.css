@@ -209,12 +209,6 @@ h2{font-size:clamp(20px,3vw,36px)}
 .feature-content h4{font-size:1.1rem;font-weight:700;margin:0 0 6px;color:#fff}
 .feature-content p{margin:0;color:var(--muted);font-size:0.9rem;line-height:1.45}
 
-/* Waitlist Counter */
-.waitlist-counter{display:flex;justify-content:center;align-items:center;margin:0 0 28px;padding:28px 0;border-top:1px solid var(--brd);border-bottom:1px solid var(--brd)}
-.waitlist-stat{text-align:center}
-.waitlist-number{font-size:3.25rem;font-weight:800;color:var(--pink);margin:0 0 8px;line-height:1;transition:all 0.3s ease}
-.waitlist-label{font-size:0.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-
 .community-cta{margin:0;text-align:center}
 .community-btn{padding:16px 32px;font-size:1.05rem;font-weight:700;background:var(--pink);color:#000;border:none;border-radius:12px;transition:all 0.3s ease;box-shadow:0 8px 20px rgba(255,64,129,0.3)}
 .community-btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(255,64,129,0.4);background:var(--pinkDeep)}
@@ -229,41 +223,32 @@ h2{font-size:clamp(20px,3vw,36px)}
 .faq-item h3{font-size:1.2rem;font-weight:700;margin:0 0 12px;color:#fff}
 .faq-item p{font-size:0.95rem;color:var(--muted);line-height:1.6;margin:0}
 
-/* Waiting List Section */
-.waiting-list-container{max-width:800px;margin:0 auto}
-.waiting-list-card{background:var(--card);border:1px solid var(--brd);border-radius:24px;padding:32px;display:grid;grid-template-columns:1fr;gap:32px}
-@media(min-width:768px){.waiting-list-card{grid-template-columns:1.2fr 1fr;padding:40px;gap:40px}}
-
-.waiting-list-form{display:flex;flex-direction:column;gap:16px}
-.waiting-list-form .input{height:52px;padding:14px 18px;border:1px solid var(--brd);border-radius:12px;background:rgba(0,0,0,.4);color:#fff;font-size:1rem;font-family:inherit;transition:all 0.3s ease}
-.waiting-list-form .input:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,64,129,0.1)}
-.waiting-list-form button{text-align:center;justify-content:center}
-.waiting-list-form .g-recaptcha{display:flex;justify-content:center;margin:8px 0}
-.waiting-list-form .g-recaptcha > div{transform:scale(0.9);transform-origin:top left}
-@media(max-width:767px){
-  .waiting-list-form .g-recaptcha > div{transform:scale(0.85)}
+/* Store badges */
+.hero-cta{display:flex;flex-direction:column;align-items:center;width:fit-content;gap:12px}
+.store-badges{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.store-badges-lg{justify-content:center;margin-top:8px}
+.store-badge{display:block;height:40px;line-height:0;transition:transform .25s ease}
+.store-badge img{height:40px;width:auto;max-width:none;border-radius:8px;display:block}
+a.store-badge:hover{transform:translateY(-3px)}
+a.store-badge:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:8px}
+.store-badge-soon{cursor:default;user-select:none}
+.hero-cta .btn.outline{height:40px;padding:0 16px !important;font-size:.95rem !important;border-radius:8px;box-sizing:border-box}
+@media(min-width:480px){
+  .store-badge,.store-badge img,.hero-cta .btn.outline{height:44px}
+  .hero-cta .btn.outline{padding:0 18px !important;font-size:1rem !important}
 }
-
-.waiting-list-benefits{display:flex;flex-direction:column;gap:24px}
-.benefit-item{display:flex;align-items:flex-start;gap:16px}
-.benefit-item .icon{width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(255,64,129,0.15);border-radius:12px}
-.benefit-item .icon svg{width:20px;height:20px;fill:var(--pink)}
-.benefit-item h4{font-size:1.1rem;font-weight:700;margin:0 0 4px;color:#fff}
-.benefit-item p{font-size:0.9rem;color:var(--muted);margin:0;line-height:1.5}
-
-@media(max-width:767px){
-  .waiting-list-card{padding:32px;gap:32px}
-  .waiting-list-form .input{height:48px;padding:12px 16px;font-size:0.95rem}
+@media(min-width:768px){
+  .store-badge,.store-badge img,.hero-cta .btn.outline{height:48px}
+  .store-badges-lg .store-badge,.store-badges-lg .store-badge img{height:56px}
+  .hero-cta .btn.outline{padding:0 20px !important;font-size:1.05rem !important}
 }
 
 /* Mobile responsive community */
 @media(max-width:767px){
   .community-grid{gap:12px;margin-bottom:24px}
   .community-feature-card{padding:18px;gap:14px}
-  .waitlist-counter{padding:24px 0;margin:0 0 24px}
-  .waitlist-number{font-size:2.75rem}
-  .waitlist-label{font-size:0.85rem}
   .community-cta{margin:0}
+  .store-badge,.store-badge img,.hero-cta .btn.outline{height:40px}
 }
 
 /* Gamification badge showcase */

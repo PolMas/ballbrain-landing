@@ -23,7 +23,6 @@
   <link rel="icon" type="image/png" href="media/favicon.png" />
   <link rel="apple-touch-icon" href="media/apple-touch-icon.png" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
   <!-- Hotjar Tracking Code for BallBrain Landing -->
   <script>
@@ -99,12 +98,12 @@
         <a href="#academy">Academy</a>
         <a href="#pilot">Pilot</a>
         <a href="#social">Compete</a>
-        <a href="#download">Join Waitlist</a>
+        <a href="#download">Get the App</a>
         <a href="#faqs">FAQs</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="row gap-8">
-        <a class="btn solid hide-sm" href="#download">Join Waitlist</a>
+        <a class="btn solid hide-sm" href="#download">Get the App</a>
         <a class="btn outline hide-sm" href="#contact">Contact</a>
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
           <span class="hamburger"></span>
@@ -130,7 +129,7 @@
         <a href="#academy">ACADEMY</a>
         <a href="#pilot">PILOT</a>
         <a href="#social">COMPETE</a>
-        <a href="#download">JOIN WAITLIST</a>
+        <a href="#download">GET THE APP</a>
         <a href="#faqs">FAQS</a>
         <a href="#contact">CONTACT</a>
       </div>
@@ -153,7 +152,7 @@
       <div class="hero-layout">
         <div class="hero-copy">
           <div class="stack-32">
-            <span class="badge"><span class="icon"><svg><use href="#icon-zap"/></svg></span> Closed Android beta · Nairobi</span>
+            <span class="badge"><span class="icon"><svg><use href="#icon-zap"/></svg></span> Available on Google Play</span>
             <h1>Train. Measure. <span class="pink">Improve.</span></h1>
             <p class="hero-subtitle">A personalized 6-week training program shaped with a strength &amp; conditioning coach. Nutrition targets adapt to workout, game, and recovery days.</p>
 
@@ -172,8 +171,15 @@
               </div>
             </div>
 
-            <div class="row gap-20 wrap">
-              <a class="btn solid" href="#download">Join Waitlist</a>
+            <div class="hero-cta">
+              <div class="store-badges">
+                <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.ballbrain.app" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+                  <img src="media/google-play-badge.png" alt="Get it on Google Play" />
+                </a>
+                <span class="store-badge store-badge-soon">
+                  <img src="media/app-store-coming-soon.svg" alt="Coming soon on the App Store" />
+                </span>
+              </div>
               <a class="btn outline" href="#features">See Features <span class="icon"><svg><use href="#icon-chevron"/></svg></span></a>
             </div>
           </div>
@@ -557,65 +563,29 @@
         </div>
       </div>
 
-      <div class="waitlist-counter">
-        <div class="waitlist-stat">
-          <div class="waitlist-number" data-target="247">0</div>
-          <div class="waitlist-label">Athletes on the waitlist</div>
-        </div>
-      </div>
-
       <div class="community-cta">
-        <a class="btn solid community-btn" href="#download">Join the Waitlist</a>
+        <a class="btn solid community-btn" href="#download">Get the App</a>
       </div>
     </div>
   </section>
 
-  <!-- WAITING LIST -->
-  <section id="download" class="section waiting-list-section">
+  <!-- DOWNLOAD -->
+  <section id="download" class="section download-section">
     <div class="orb orb-f"></div>
     <div class="container">
       <div class="section-head">
-        <p class="kicker">Join the Waitlist</p>
-        <h2>Be among the first to experience BallBrain</h2>
-        <p class="muted">Get notified when the app launches and secure your spot for personalized basketball training.</p>
+        <p class="kicker">Get the App</p>
+        <h2>Download BallBrain</h2>
+        <p class="muted">Available now on Google Play. The iOS app is coming soon.</p>
       </div>
 
-      <div class="waiting-list-container">
-        <div class="waiting-list-card">
-          <form id="waitingListForm" class="waiting-list-form" action="https://formspree.io/f/movpqovl" method="POST">
-            <input type="hidden" name="_subject" value="New BallBrain Waitlist Signup" />
-            <input class="input" type="text" name="name" required placeholder="Your name" />
-            <input class="input" type="email" name="email" required placeholder="Your email address" />
-            <input class="input" type="text" name="position" placeholder="Your position (e.g., Point Guard)" />
-            <div class="g-recaptcha" data-sitekey="6Lf4m_crAAAAACti9ItVr4owvM_BcHo3J27A98Qp"></div>
-            <button class="btn solid" type="submit">Join the Waitlist</button>
-            <p class="tiny muted">We'll notify you as soon as BallBrain is ready. No spam, just updates!</p>
-          </form>
-
-          <div class="waiting-list-benefits">
-            <div class="benefit-item">
-              <span class="icon pink"><svg><use href="#icon-zap"/></svg></span>
-              <div>
-                <h4>Early Access</h4>
-                <p>Be among the first to try BallBrain</p>
-              </div>
-            </div>
-            <div class="benefit-item">
-              <span class="icon pink"><svg><use href="#icon-star"/></svg></span>
-              <div>
-                <h4>Exclusive Updates</h4>
-                <p>Get the latest features and training tips</p>
-              </div>
-            </div>
-            <div class="benefit-item">
-              <span class="icon pink"><svg><use href="#icon-crown"/></svg></span>
-              <div>
-                <h4>Special Perks</h4>
-                <p>Receive launch day bonuses and rewards</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="store-badges store-badges-lg">
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.ballbrain.app" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+          <img src="media/google-play-badge.png" alt="Get it on Google Play" />
+        </a>
+        <span class="store-badge store-badge-soon">
+          <img src="media/app-store-coming-soon.svg" alt="Coming soon on the App Store" />
+        </span>
       </div>
     </div>
   </section>
@@ -747,8 +717,13 @@
         </div>
 
         <div class="faq-item">
+          <h3>Where can I download BallBrain?</h3>
+          <p>BallBrain is available now on Google Play. The iOS app is coming soon.</p>
+        </div>
+
+        <div class="faq-item">
           <h3>How much does BallBrain cost?</h3>
-          <p>BallBrain is currently in closed Android beta and we are not charging while we focus on product-market fit. Join the waitlist to get access as we open up.</p>
+          <p>BallBrain is free to download on Google Play. You get a 7-day trial and the first 3 workouts. BallBrain Premium is optional and arranged outside the app — currently KES 500 for 30 days.</p>
         </div>
       </div>
     </div>
@@ -768,7 +743,7 @@
           <a href="#academy">Academy</a>
           <a href="#pilot">Pilot</a>
           <a href="#social">Compete</a>
-          <a href="#download">Join Waitlist</a>
+          <a href="#download">Get the App</a>
           <a href="#faqs">FAQs</a>
           <a href="#contact">Contact</a>
         </nav>
