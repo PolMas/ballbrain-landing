@@ -142,7 +142,7 @@
     <a class='back-link' href='/'>← Back to Home</a>
     
     <h1>Privacy Policy</h1>
-    <p class="last-updated"><strong>Last Updated: September 2, 2026</strong></p>
+    <p class="last-updated"><strong>Last Updated: September 24, 2026</strong></p>
     <p>BallBrain (&quot;BallBrain,&quot; &quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) provides a basketball training, nutrition guidance, and performance-tracking application (the &quot;App&quot;). This Privacy Policy explains what information we collect, how we use and share it, and the choices available to you.</p>
     <h2>1. Information We Collect</h2>
     <h3>1.1 Account and profile information</h3>
@@ -189,7 +189,7 @@
     <h3>1.5 Device and notification information</h3>
     <p>We may process device platform, operating system, App version, and technical identifiers needed to operate and secure the App. If you allow push notifications, we collect an Expo push token associated with your account. We do not request precise location or microphone access for the vertical-jump feature.</p>
     <h3>1.6 Product analytics</h3>
-    <p>If you opt in, we collect privacy-safe product events such as signup completion, onboarding steps, workout starts/completions, plan generation outcomes, notification opens, vertical-jump funnel steps, and product-feedback survey funnel events (for example, survey shown, submitted, or dismissed). We may associate these events with an opaque Firebase user ID. Analytics does not include your email, username, exact birth date, exact height or weight, injuries, free-text survey answers, or plan contents. You can disable analytics in Settings.</p>
+    <p>Product analytics is on unless you turn it off in Settings. We collect privacy-safe product events such as signup completion, onboarding steps, workout starts/completions, plan generation outcomes, notification opens, vertical-jump funnel steps, and product-feedback survey funnel events (for example, survey shown, submitted, or dismissed). We may associate these events with an opaque Firebase user ID. The App sends these events to Google Firebase Analytics and to PostHog. PostHog may also receive standard device and app properties that its SDK attaches, such as app version, platform, and device type. Analytics does not include your email, username, exact birth date, exact height or weight, injuries, free-text survey answers, or plan contents. You can disable analytics in Settings.</p>
     <h3>1.7 Optional product-feedback survey</h3>
     <p>From time to time we may invite eligible athletes to answer an optional in-app product-market-fit survey. If you choose to respond, we may collect:</p>
     <ul>
@@ -210,7 +210,7 @@
       <li>Analyze and save vertical-jump results</li>
       <li>Enable team roster and coaching features</li>
       <li>Send requested push notifications, reminders, and service messages</li>
-      <li>Measure product performance, feature adoption, and retention through privacy-safe analytics when you opt in</li>
+      <li>Measure product performance, feature adoption, and retention through privacy-safe analytics unless you turn it off in Settings</li>
       <li>Review optional product-feedback survey responses to improve BallBrain</li>
       <li>Contact you about BallBrain Premium if you request it, using the phone number or email you provide</li>
       <li>Understand marketing-website usage (including via Hotjar) to improve ballbrain.app</li>
@@ -226,7 +226,8 @@
     <h3>3.2 Service providers</h3>
     <p>We use providers to operate specific parts of the App:</p>
     <ul>
-      <li><strong>Google Firebase / Google Cloud:</strong> authentication, database, cloud functions, profile-image storage, analytics export, and BigQuery reporting for opted-in product analytics</li>
+      <li><strong>Google Firebase / Google Cloud:</strong> authentication, database, cloud functions, profile-image storage, analytics export, and BigQuery reporting for product analytics (unless disabled in Settings)</li>
+      <li><strong>PostHog:</strong> in-App product analytics (unless disabled in Settings). PostHog receives the privacy-safe events described above and an opaque user ID. It does not receive your email, username, exact birth date, exact height or weight, injuries, free-text survey answers, plan contents, jump recordings, or password.</li>
       <li><strong>DeepSeek:</strong> AI generation of basketball training plans and exercise substitutions. We send relevant profile and training information, which may include age, sex, country, height, weight, position, goals, injuries or pain areas, activity frequency, availability, equipment, and previous-program progress. We do not intentionally include your email or password in these prompts.</li>
       <li><strong>Expo:</strong> push-notification token issuance and delivery</li>
       <li><strong>Resend:</strong> transactional email delivery, such as welcome messages</li>
@@ -243,7 +244,7 @@
     <p>We do not sell personal information or use it for third-party targeted advertising.</p>
     <h2>4. Data Storage, Retention, and Security</h2>
     <p>Cloud account data is primarily stored through Firebase and Google Cloud. Local App data is stored on your device. We use reasonable administrative, technical, and organizational safeguards, including encrypted network transport and Firebase Authentication. Passwords are handled by Firebase Authentication and are not stored by BallBrain in plain text. No method of storage or transmission is completely secure.</p>
-    <p>We retain account information while your account is active and as needed to provide the App. We may retain limited information after deletion where reasonably necessary for legal obligations, dispute resolution, fraud prevention, security, or enforcing agreements. Analytics event exports may remain in BigQuery for a limited period according to our reporting retention policy even after account deletion requests are processed.</p>
+    <p>We retain account information while your account is active and as needed to provide the App. We may retain limited information after deletion where reasonably necessary for legal obligations, dispute resolution, fraud prevention, security, or enforcing agreements. Analytics event exports may remain in BigQuery for a limited period according to our reporting retention policy even after account deletion requests are processed. Events already sent to PostHog may remain there until that project&#x27;s retention period ends. Deleting your account does not automatically erase events already received by Firebase Analytics or PostHog.</p>
     <h2>5. Your Choices and Rights</h2>
     <p>Depending on where you live, you may have rights to access, correct, delete, restrict, object to, or receive a portable copy of personal information, and to withdraw consent. These rights may be subject to legal exceptions.</p>
     <ul>
@@ -252,7 +253,7 @@
       <li><strong>Individual records:</strong> You may delete individual vertical-jump history entries in the App.</li>
       <li><strong>Notifications:</strong> Disable App notifications in Settings or your device settings. Disabling notifications does not stop essential account or service email.</li>
       <li><strong>Camera and photos:</strong> Manage permissions in your device settings. Some related features will not work without permission.</li>
-      <li><strong>Analytics:</strong> Disable privacy-safe product analytics in <strong>Settings → Privacy</strong>. This does not control Hotjar on ballbrain.app; manage website cookies through your browser settings where available.</li>
+      <li><strong>Analytics:</strong> Disable privacy-safe product analytics in <strong>Settings → Privacy</strong>. That stops new in-App events from being sent to Firebase Analytics and PostHog. It does not control Hotjar on ballbrain.app; manage website cookies through your browser settings where available.</li>
       <li><strong>Product-feedback survey:</strong> Optional. Dismiss or skip it; submitted answers remain until you delete your account or request deletion.</li>
       <li><strong>Local data:</strong> Signing out or deleting an account clears user-specific local App data, but shared images you saved to your photo library or another service must be deleted there separately.</li>
     </ul>
