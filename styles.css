@@ -709,3 +709,24 @@ textarea.input{height:auto;min-height:120px;resize:vertical}
 @media(min-width:1024px){
   .pilot-content .grid-4{grid-template-columns:repeat(4,1fr);gap:20px}
 }
+
+.support-page{padding:56px 0 80px}
+.support-page .section-head{margin-bottom:32px}
+.support-page h1{font-size:clamp(36px,5vw,56px)}
+.support-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.support-card-follow{margin-top:16px}
+@media(min-width:768px){.support-card-follow{margin-top:24px}}
+@media(min-width:768px){.support-grid{grid-template-columns:1.15fr .85fr;gap:24px}}
+.support-card h2{font-size:clamp(22px,3vw,28px);margin-bottom:8px}
+.support-card p,.support-card li{color:var(--muted);line-height:1.65}
+.support-card ul{margin:12px 0 0;padding-left:18px}
+.support-card li+li{margin-top:8px}
+.support-card .btn{margin-top:20px}
+.support-email{display:inline-block;margin-top:12px;color:var(--pink);font-size:clamp(1.25rem,2vw,1.6rem);font-weight:700}
+.support-email:hover{color:var(--pinkDeep)}
+.support-card a:not(.btn):not(.support-email){color:var(--pink);font-weight:600}
+.support-card a:not(.btn):not(.support-email):hover{color:var(--pinkDeep)}
+.support-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:28px}
+.support-links a{color:var(--pink);font-weight:600}
+.support-links a:hover{color:var(--pinkDeep)}
+.support-address{margin-top:28px}

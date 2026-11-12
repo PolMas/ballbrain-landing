@@ -2,6 +2,16 @@
   publish = "."
 
 [[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact/"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
   from = "/admin"
   to = "https://admin.ballbrain.app/"
   status = 301
