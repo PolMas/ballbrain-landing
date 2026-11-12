@@ -222,6 +222,8 @@ h2{font-size:clamp(20px,3vw,36px)}
 .faq-item:hover{border-color:var(--pink);transform:translateY(-4px);box-shadow:0 10px 30px rgba(255,64,129,0.15)}
 .faq-item h3{font-size:1.2rem;font-weight:700;margin:0 0 12px;color:#fff}
 .faq-item p{font-size:0.95rem;color:var(--muted);line-height:1.6;margin:0}
+.faq-item a{color:var(--pink);font-weight:600}
+.faq-item a:hover{color:var(--pinkDeep)}
 
 /* Store badges */
 .hero-cta{display:flex;flex-direction:column;align-items:center;width:fit-content;gap:12px}
